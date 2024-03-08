@@ -18,6 +18,19 @@ const UserApi = {
         }
 
         return api.post('login', logindto)
+    },
+
+    Register: (email, firstname, lastname, phoneNumber, password, username, address) => {
+        let registerdto = {
+            Email: email,
+            FullName: `${firstname}_${lastname}`,
+            Password: password,
+            Phone: phoneNumber,
+            Address: address,
+            Username: username
+        }
+
+        return api.post('register', registerdto)
     }
 }
 
