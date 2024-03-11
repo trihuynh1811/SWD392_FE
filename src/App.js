@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux';
 import './css/app.css';
 import './css/Homepage.css';
 import './css/input.css';
+import { Footer } from './components/footer/Footer';
 
 function App() {
   const accessToken = useSelector((state) => state.auth.accessToken)
@@ -66,17 +67,13 @@ function App() {
         </nav>
       </header>
       <div className="App" style={{ minHeight: "100vh" }}>
-        
+        {/*  */}
       </div>
 
 
 
-      <footer className="bg-gray-800 rounded-t-lg shadow w-100 sticky top-full">
-        <div className="w-full mx-auto max-w-screen-xl p-4 flex justify-center items-center">
-          <span className="text-sm text-gray-300 sm:text-center dark:text-gray-400">© 2024 <a href="https://www.youtube.com/watch?v=Yb6dZ1IFlKc" className="hover:underline">ASP™</a>. All Rights Reserved.
-          </span>
-        </div>
-      </footer>
+      
+      <Footer></Footer>
 
     </>
 
