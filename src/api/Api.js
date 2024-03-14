@@ -1,37 +1,39 @@
 import Axios from "axios";
 
 const api = Axios.create({
-    baseURL: "https://localhost:7147/",
-    headers: {
-        crossDomain: true, // Set crossDomain to true
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    }
+    baseURL: "https://localhost:44394/"
 })
 
-const UserApi = {
-    Login: (email, password) => {
-        let logindto = {
-            Email: email,
-            Password: password
-        }
-
-        return api.post('login', logindto)
+export const UserApi = {
+    Login: (data) => {
+        return api.post('login', data, {
+            headers: {
+                crossDomain: true,
+                'Content-Type': 'application/json'
+            }
+        })
     },
 
-    Register: (email, firstname, lastname, phoneNumber, password, username, address) => {
-        let registerdto = {
-            Email: email,
-            FullName: `${firstname}_${lastname}`,
-            Password: password,
-            Phone: phoneNumber,
-            Address: address,
-            Username: username
-        }
-
-        return api.post('register', registerdto)
+    Register: (data) => {
+        return api.post('register', data, {
+            headers: {
+                crossDomain: true,
+                'Content-Type': 'application/json'
+            }
+        })
     }
 }
 
-export default UserApi;
+export const ArtworkApi = {
+    CreateArtwork: (token, data) => {
+        return api.post('add-artwork', data, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+                crossDomain: true,
+                'Content-Type': 'multipart/form-data',
+            }
+        })
+    }
+
+
+}

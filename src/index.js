@@ -5,6 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import CreateArtwork from './pages/CreateArtwork';
 import { Provider } from 'react-redux';
 import store from './store/store';
 import {
@@ -20,12 +21,16 @@ const router = createBrowserRouter([
     element: <App />,
   },
   {
-    path: "/Login",
+    path: "/login",
     element: <Login />
   },
   {
-    path: "/Register",
+    path: "/register",
     element: <Register />
+  },
+  {
+    path: "/new-artwork",
+    element: <CreateArtwork />
   }
 ]);
 

@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
-import UserApi from '../api/Api';
+import { UserApi } from '../api/Api';
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import '../dist/output.css';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setAccessToken } from '../store/authActions';
-import { useSelector } from 'react-redux';
 
 const Login = () => {
     const accessToken = useSelector((state) => state.auth.accessToken);
@@ -15,8 +14,10 @@ const Login = () => {
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const [email, setEmail] = useState("")
-    const [password, setPassword] = useState("")
+    const [data, setData] = useState({
+        email: "",
+        password: ""
+    })
     const [error, setError] = useState("")
 
     const validateSchema = Yup.object().shape({
@@ -38,20 +39,19 @@ const Login = () => {
 
 
     useEffect(() => {
-        console.log("email: " + email)
-        console.log("password: " + password)
-    }, [email, password])
+        console.log("email: " + data.email)
+        console.log("password: " + data.password)
+    }, [data])
 
-    const emailInput = (e) => {
-        setEmail(e.target.value)
-    }
-
-    const passwordInput = (e) => {
-        setPassword(e.target.value)
+    const handleInput = (e) => {
+        setData(prevState => ({
+            ...prevState,
+            [e.target.name]: e.target.value
+        }))
     }
 
     const login = () => {
-        UserApi.Login(email, password).then(res => {
+        UserApi.Login(data).then(res => {
             var token = res.data
             dispatch(setAccessToken(token));
             console.log(token)
@@ -76,14 +76,14 @@ const Login = () => {
                         <form className="space-y-4 md:space-y-6" action="#">
                             <div>
                                 <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900">Email</label>
-                                <input type='text' name='email' id='email' className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500" value={email} onChange={e => emailInput(e)} />
+                                <input type='text' name='email' id='email' className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500" value={data.email} onChange={e => handleInput(e)} />
                                 {formik.touched.email && formik.errors.email && (
                                     <div className='flex-1 flex items-center ms-3 text-red-500 italic text-sm'>{formik.errors.email}</div>
                                 )}
                             </div>
                             <div>
                                 <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900">Password</label>
-                                <input type='password' name='password' id='password' className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500" value={password} onChange={e => passwordInput(e)} />
+                                <input type='password' name='password' id='password' className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500" value={data.password} onChange={e => handleInput(e)} />
                                 {formik.touched.password && formik.errors.password && (
                                     <div className='flex-1 flex items-center ms-3 text-red-500 italic text-sm'>{formik.errors.password}</div>
                                 )}
