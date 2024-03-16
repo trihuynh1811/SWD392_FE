@@ -17,7 +17,7 @@ function Gallery() {
         <>
             <Header></Header>
             <div style={{ minHeight: '100vh' }}>
-
+                hello
             </div>
             <Footer></Footer>
         </>
