@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import React from 'react';
 import { useSelector } from 'react-redux';
 import line_between from '../../image/Header/line_between.png'
+import '../../css/app.css';
 
 
 
@@ -50,7 +51,10 @@ export const Header = () => {
                   </li>
                   {displayManageArtwork}
                   <li>
-                    <Link to={"/pricing"} className="text-[18px] text-[#3D4449]  hover:bg-gray-50 lg:hover:bg-transparent font-medium lg:border-0 lg:hover:text-[#F8939C] lg:p-0">Get Pro</Link>
+                    <button className='bg-black px-[8px] py-[11px] rounded-[10px]'>
+                      <Link to={"/pricing"} className="price_btn text-[18px]  hover:bg-gray-50 lg:hover:bg-transparent font-medium lg:border-0 lg:hover:text-[#F8939C] lg:p-0">Get Pro</Link>
+                    </button>
+
                   </li>
                   <li>
                     <img className='h-[42px] opacity-60' src={line_between} alt="" />
