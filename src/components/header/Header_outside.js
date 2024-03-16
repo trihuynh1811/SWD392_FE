@@ -13,7 +13,12 @@ export const HeaderOutSide = () => {
   console.log(accessToken)
 
   const displayLoginRegisterButton = accessToken !== null ?
-    (<Link to={"/login"} className="text-blue-800 bg-slate-200 hover:bg-slate-300 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 py-2 focus:outline-none">Logout</Link>) :
+    (<div>
+      <Link to={"/login"} className="text-blue-800 bg-slate-200 hover:bg-slate-300 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 py-2 focus:outline-none">Logout</Link>
+      <Link to={"/pricing"} >Pricing</Link>
+    </div>
+
+    ) :
     (
       <div>
         <Link to={"/login"} className="text-[#F8939C] focus:ring-4 focus:ring-gray-300 font-medium text-[18px]  mr-[12px] focus:outline-none lg:hover:opacity-80">Log In</Link>
