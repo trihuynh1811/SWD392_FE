@@ -32,7 +32,8 @@ const router = createBrowserRouter([
   {
     path:"/AboutUs",
     element: <AboutUs />
-  }
+  },
+  
 ]);
 
 root.render(
