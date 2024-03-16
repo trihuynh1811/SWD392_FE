@@ -35,8 +35,12 @@ export const ArtworkApi = {
         })
     },
 
+    GetAllArtwork: () => {
+        return api.get('get-all-artworks')
+    },
+
     GetAllArtworkByUserId: (id) => {
-        return api.get(`get-artworks/${id}`)
+        return api.get(`get-artworks/user/${id}`)
     },
 
     GetArtworkById: (id) => {
@@ -52,6 +56,10 @@ export const ArtworkApi = {
             }
         })
 
+    },
+
+    GetAllArtworkType: () => {
+        return api.get('get-all-artwork-types')
     }
 
 

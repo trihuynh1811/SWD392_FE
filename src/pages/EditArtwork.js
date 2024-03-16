@@ -28,13 +28,19 @@ function EditArtwork() {
 
     const validateSchema = Yup.object().shape({
         Name: Yup.string().required("This field is required"),
-        Description: Yup.string().required("This field is required")
+        Description: Yup.string().required("This field is required"),
+        Price: Yup.number()
+            .required('Price is required')
+            .positive('Price must be a positive number')
+            .min(10000, 'Price must be at least 10000')
+            .max(1000000000, 'Price must be at most 1000000000')
     });
 
     const formik = useFormik({
         initialValues: {
             Name: "",
-            Description: ""
+            Description: "",
+            Price: 0
         },
         validationSchema: validateSchema,
     });
@@ -98,7 +104,28 @@ function EditArtwork() {
 
                                 </div>
 
+
                                 <div>
+                                    <div className='flex justify-between items-center'>
+                                        <label htmlFor="price" className="block mb-2 text-sm font-medium text-gray-900">Price</label>
+                                        {formik.touched.Price && formik.errors.Price && (
+                                            <div className='flex-1 flex items-center ms-3 mb-2 text-red-500 italic text-sm'>{formik.errors.Price}</div>
+                                        )}
+                                    </div>
+                                    <input
+                                        type="number"
+                                        name="Price"
+                                        id="price"
+                                        min={10000}
+                                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                                        onChange={e => { formik.handleChange(e); handleInput(e) }}
+                                        onBlur={formik.handleBlur}
+                                        value={formik.values.Price}
+                                    />
+
+                                </div>
+
+                                <div className='col-span-2'>
                                     <label htmlFor="category" className="block mb-2 text-sm font-medium text-gray-900">Type</label>
                                     <select
                                         id="category"
