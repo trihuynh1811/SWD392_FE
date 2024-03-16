@@ -7,3 +7,46 @@
 .btn_signup{
   border-radius: 40px;
 }
+
+.explore_btn{
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background-color: pink;
+}
+.explore_btn:hover:before{
+  content: "";
+  position: absolute;
+  left: auto;
+  right: 0;
+  top: 0;
+  height: 100%;
+  width: 0;
+  background-color: black;
+  z-index: -1;
+  transition: 0.4s;
+}
+
+
+.explore_btn:hover:before{
+  left: 0;
+  right: auto;
+  width: 100%;
+  
+}
+
+.explore_btn::after{
+  content: "";
+  position: absolute;
+  transition: 0.4s;
+  right: 0;
+  top: 0;
+  height: 100%;
+  left: auto;
+  width: 0;
+  z-index: -1;
+}
+.card_intro{
+  background: linear-gradient(157deg, rgba(248, 147, 156, 0.40) 0.07%, rgba(255, 213, 134, 0.32) 99.07%);
+}
+

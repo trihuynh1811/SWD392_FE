@@ -8,6 +8,8 @@ import './css/Homepage.css';
 import './css/input.css';
 import { Footer } from './components/footer/Footer';
 import { Header } from './components/header/Header';
+import { Intro } from './components/homepage/Intro';
+import { Benefit } from './components/homepage/Benefits';
 
 function App() {
   
@@ -16,8 +18,10 @@ function App() {
   return (
     <div className='bg-[#F4F1E4]'>
       <Header></Header>
+      <Intro></Intro>
+      <Benefit></Benefit>
       <div className="App" style={{ minHeight: "100vh" }}>
-        {/*  */}
+        
       </div>
 
 
