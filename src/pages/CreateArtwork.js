@@ -8,6 +8,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setAccessToken } from '../store/authActions';
 import PreviewFile from '../components/PreviewFile';
 import axios from 'axios';
+import { Footer } from '../components/footer/Footer';
+import { Header } from '../components/header/Header';
 
 function CreateArtwork() {
     const accessToken = useSelector((state) => state.auth.accessToken);
@@ -15,6 +17,7 @@ function CreateArtwork() {
     const navigate = useNavigate();
 
     useEffect(() => {
+        window.scrollTo(0, 0)
         if (accessToken === null) {
             navigate('/Login')
         }
@@ -69,7 +72,7 @@ function CreateArtwork() {
     }
 
 const discard = ()=>{
-    navigate("/")
+    navigate("/manage-artwork")
 }
 
     const submitNewArtwork = async () => {
@@ -85,7 +88,9 @@ const discard = ()=>{
     }
 
     return (
-        <div id="createProductModal" tabIndex={-1} aria-hidden="true" className="overflow-y-auto overflow-x-hidden flex z-50 justify-center items-center w-full h-full">
+        <>
+        <Header></Header>
+        <div id="createProductModal" tabIndex={-1} aria-hidden="true" className="overflow-y-auto overflow-x-hidden flex z-50 justify-center items-center w-full h-full bg-[#F4F1E4]" style={{ minHeight: "100vh" }}>
             <div className="relative p-4 w-full h-full">
                 <div className="relative p-4 bg-white rounded-lg shadow">
                     <div className="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 dark:border-gray-600">
@@ -195,6 +200,8 @@ const discard = ()=>{
                 </div>
             </div>
         </div>
+        <Footer></Footer>
+        </>
     )
 }
 

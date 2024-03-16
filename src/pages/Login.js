@@ -10,6 +10,8 @@ import google_icon from '../image/LoginSignUp/google_icon.png'
 import line from '../image/LoginSignUp/line.png'
 import { useDispatch, useSelector } from 'react-redux';
 import { setAccessToken } from '../store/authActions';
+import { setCurrentUser } from '../store/userActions';
+import jwt_decode from "jwt-decode"
 
 const Login = () => {
     const accessToken = useSelector((state) => state.auth.accessToken);
@@ -57,6 +59,9 @@ const Login = () => {
     const login = () => {
         UserApi.Login(data).then(res => {
             var token = res.data
+            var user = jwt_decode(token)
+            console.log(user)
+            dispatch(setCurrentUser(user))
             dispatch(setAccessToken(token));
             console.log(token)
 

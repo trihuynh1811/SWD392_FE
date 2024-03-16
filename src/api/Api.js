@@ -33,6 +33,25 @@ export const ArtworkApi = {
                 'Content-Type': 'multipart/form-data',
             }
         })
+    },
+
+    GetAllArtworkByUserId: (id) => {
+        return api.get(`get-artworks/${id}`)
+    },
+
+    GetArtworkById: (id) => {
+        return api.get(`get-artwork/${id}`)
+    },
+
+    UpdateArtworkById: (id, data, token) => {
+        return api.put(`update-artwork/${id}`, data, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+                crossDomain: true,
+                'Content-Type': 'application/json',
+            }
+        })
+
     }
 
 
