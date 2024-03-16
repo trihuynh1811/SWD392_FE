@@ -43,7 +43,7 @@ export const Header = () => {
                     <Link to={"#"} className="block text-[#3D4449]  hover:text-[#F8939C]  font-medium text-[18px]">About us</Link>
                   </li>
                   <li>
-                    <Link to={"#"} className="block text-[18px] text-[#3D4449]  hover:bg-gray-50 lg:hover:bg-transparent font-medium lg:border-0 lg:hover:text-[#F8939C] lg:p-0">Gallery</Link>
+                    <Link to={"/gallery"} className="block text-[18px] text-[#3D4449]  hover:bg-gray-50 lg:hover:bg-transparent font-medium lg:border-0 lg:hover:text-[#F8939C] lg:p-0">Gallery</Link>
                   </li>
                 </ul>
               </div>

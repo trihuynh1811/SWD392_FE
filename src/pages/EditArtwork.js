@@ -10,10 +10,15 @@ import PreviewFile from '../components/PreviewFile';
 import axios from 'axios';
 import { Footer } from '../components/footer/Footer';
 import { Header } from '../components/header/Header';
+import { setArtworkTypes } from '../store/artworkTypeActions';
 
 function EditArtwork() {
     const accessToken = useSelector((state) => state.auth.accessToken);
+    const artworkTypes = useSelector((state) => state.artworkType.artworkTypes)
+    const dispatch = useDispatch();
+
     const [searchParams, setSearchParams] = useSearchParams();
+    const [artworkTypesList, setArtworkTypesList] = useState([])
     const [id, setId] = useState(0)
     const [artwork, setArtwork] = useState(null)
     const [formData, setFormData] = useState({
@@ -52,6 +57,16 @@ function EditArtwork() {
             return
         }
         window.scrollTo(0, 0)
+        if (artworkTypes.length <= 0) {
+            ArtworkApi.GetAllArtworkType().then(res => {
+                setArtworkTypesList(res.data)
+                dispatch(setArtworkTypes(res.data))
+            }).then(e => console.log(e))
+        }
+        else {
+            console.log(artworkTypes)
+            setArtworkTypesList(artworkTypes)
+        }
         ArtworkApi.GetArtworkById(searchParams.get("id")).then(res => {
             setArtwork(res.data)
             setId(searchParams.get("id"))
@@ -75,6 +90,10 @@ function EditArtwork() {
     const updateArtwork = () => {
         ArtworkApi.UpdateArtworkById(id, formData, accessToken).then(res => alert(`update artwork ${artwork.name} successfully`)).catch(e => console.log(e))
     }
+
+    const renderListOfArtworkType = artworkTypesList.map((artworkType, index) => (
+        <option key={artworkType.id} value={artworkType.id} selected={artwork !== null && artwork.typeId === artworkType.id}>{artworkType.name}</option>
+    ))
 
     return (
         <>
@@ -135,9 +154,7 @@ function EditArtwork() {
                                         className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
                                         onChange={e => handleInput(e)}
                                     >
-                                        <option value={1} selected={artwork !== null && artwork.typeId === 1}>ảnh treo tường</option>
-                                        <option value={2} selected={artwork !== null && artwork.typeId === 2}>ảnh treo trần</option>
-                                        <option value={3} selected={artwork !== null && artwork.typeId === 3}>ảnh treo trong toilet</option>
+                                        {artworkTypesList.length > 0 && renderListOfArtworkType}
                                     </select>
                                 </div>
                                 <div className="sm:col-span-2">

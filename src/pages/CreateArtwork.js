@@ -10,16 +10,33 @@ import PreviewFile from '../components/PreviewFile';
 import axios from 'axios';
 import { Footer } from '../components/footer/Footer';
 import { Header } from '../components/header/Header';
+import { setArtworkTypes } from '../store/artworkTypeActions';
+
 
 function CreateArtwork() {
     const accessToken = useSelector((state) => state.auth.accessToken);
+    const artworkTypes = useSelector((state) => state.artworkType.artworkTypes)
+    const dispatch = useDispatch()
+
+    const [artworkTypesList, setArtworkTypesList] = useState([])
     console.log(accessToken)
     const navigate = useNavigate();
 
     useEffect(() => {
-        window.scrollTo(0, 0)
         if (accessToken === null) {
             navigate('/Login')
+            return
+        }
+        window.scrollTo(0, 0)
+        if (artworkTypes.length <= 0) {
+            ArtworkApi.GetAllArtworkType().then(res => {
+                setArtworkTypesList(res.data)
+                dispatch(setArtworkTypes(res.data))
+            }).then(e => console.log(e))
+        }
+        else {
+            console.log(artworkTypes)
+            setArtworkTypesList(artworkTypes)
         }
     }, [])
 
@@ -81,6 +98,10 @@ function CreateArtwork() {
     const discard = () => {
         navigate("/manage-artwork")
     }
+
+    const renderListOfArtworkType = artworkTypesList.map((artworkType, index) => (
+        <option key={artworkType.id} value={artworkType.id}>{artworkType.name}</option>
+    ))
 
     const submitNewArtwork = async () => {
         console.log(formData)
@@ -152,9 +173,7 @@ function CreateArtwork() {
                                         className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
                                         onChange={e => handleInput(e)}
                                     >
-                                        <option value={1}>ảnh treo tường</option>
-                                        <option value={2}>ảnh treo trần</option>
-                                        <option value={3}>ảnh treo trong toilet</option>
+                                        {artworkTypesList.length > 0 && renderListOfArtworkType}
                                     </select>
                                 </div>
                                 <div className="sm:col-span-2">
