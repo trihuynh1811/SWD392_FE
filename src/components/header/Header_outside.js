@@ -14,10 +14,12 @@ export const HeaderOutSide = () => {
 
   const displayLoginRegisterButton = accessToken !== null ?
     (<div>
-      <Link to={"/login"} className="text-blue-800 bg-slate-200 hover:bg-slate-300 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 py-2 focus:outline-none">Logout</Link>
+      <li>
+        <Link to={"/manage-artwork"} className="block text-[18px] text-[#3D4449]   hover:text-[#F8939C] lg:hover:bg-transparent font-medium lg:border-0 lg:hover:text-primary-700 lg:p-0">Manage Artwork</Link>
+      </li>
       <Link to={"/pricing"} >Pricing</Link>
+      <Link to={"/login"} className="text-blue-800 bg-slate-200 hover:bg-slate-300 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 py-2 focus:outline-none">Logout</Link>
     </div>
-
     ) :
     (
       <div>
@@ -49,9 +51,6 @@ export const HeaderOutSide = () => {
                   </li>
                   <li>
                     <Link to={"/gallery"} className="block text-[18px] text-[#3D4449]  hover:bg-gray-50 lg:hover:bg-transparent font-medium lg:border-0 lg:hover:text-[#F8939C] lg:p-0">Gallery</Link>
-                  </li>
-                  <li>
-                    <Link to={"/manage-artwork"} className="block text-[18px] text-[#3D4449]   hover:text-[#F8939C] lg:hover:bg-transparent font-medium lg:border-0 lg:hover:text-primary-700 lg:p-0">Manage Artwork</Link>
                   </li>
                   <li>
                     <img className='h-[42px] opacity-60' src={line_between} alt="" />
