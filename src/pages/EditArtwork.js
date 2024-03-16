@@ -19,6 +19,7 @@ function EditArtwork() {
     const [formData, setFormData] = useState({
         Name: '',
         Description: '',
+        Price: 0,
         TypeId: 1,
         IsDeleted: false
     })
@@ -56,6 +57,7 @@ function EditArtwork() {
             setId(searchParams.get("id"))
             formik.values.Name = res.data.name
             formik.values.Description = res.data.description
+            formik.values.Price = res.data.price
         }).catch(e => console.log(e))
     }, [])
 
