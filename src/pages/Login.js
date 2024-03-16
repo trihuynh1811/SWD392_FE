@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
-import UserApi from '../api/Api';
+import { UserApi } from '../api/Api';
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import '../dist/output.css';
@@ -8,9 +8,10 @@ import '../css/Login-Register/Login.css';
 import login_img from '../image/LoginSignUp/Login_Img.png'
 import google_icon from '../image/LoginSignUp/google_icon.png'
 import line from '../image/LoginSignUp/line.png'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setAccessToken } from '../store/authActions';
-import { useSelector } from 'react-redux';
+import { setCurrentUser } from '../store/userActions';
+import jwt_decode from "jwt-decode"
 
 const Login = () => {
     const accessToken = useSelector((state) => state.auth.accessToken);
@@ -19,8 +20,10 @@ const Login = () => {
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const [email, setEmail] = useState("")
-    const [password, setPassword] = useState("")
+    const [data, setData] = useState({
+        email: "",
+        password: ""
+    })
     const [error, setError] = useState("")
 
     const validateSchema = Yup.object().shape({
@@ -42,21 +45,23 @@ const Login = () => {
 
 
     useEffect(() => {
-        console.log("email: " + email)
-        console.log("password: " + password)
-    }, [email, password])
+        console.log("email: " + data.email)
+        console.log("password: " + data.password)
+    }, [data])
 
-    const emailInput = (e) => {
-        setEmail(e.target.value)
-    }
-
-    const passwordInput = (e) => {
-        setPassword(e.target.value)
+    const handleInput = (e) => {
+        setData(prevState => ({
+            ...prevState,
+            [e.target.name]: e.target.value
+        }))
     }
 
     const login = () => {
-        UserApi.Login(email, password).then(res => {
+        UserApi.Login(data).then(res => {
             var token = res.data
+            var user = jwt_decode(token)
+            console.log(user)
+            dispatch(setCurrentUser(user))
             dispatch(setAccessToken(token));
             console.log(token)
 
@@ -92,7 +97,7 @@ const Login = () => {
                         <form className="space-y-4 md:space-y-6" action="#">
                             <div className='mt-[70px]'>
                                 <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900">Username or email</label>
-                                <input type='text' name='email' id='email' className="border border-[#3D4449] border-opacity-25 h-[50px] text-gray-900 text-[16px]  rounded-[10px] focus:ring-primary-600 focus:border-[#3D4449] block w-full p-2.5 focus:outline-none dark:focus:ring-blue-500 dark:focus:border-[#3D4449]" value={email} onChange={e => emailInput(e)} />
+                                <input type='text' name='email' id='email' className="border border-[#3D4449] border-opacity-25 h-[50px] text-gray-900 text-[16px]  rounded-[10px] focus:ring-primary-600 focus:border-[#3D4449] block w-full p-2.5 focus:outline-none dark:focus:ring-blue-500 dark:focus:border-[#3D4449]" value={data.email} onChange={e => handleInput(e)} />
                                 {formik.touched.email && formik.errors.email && (
                                     <div className='flex-1 flex items-center ms-3 text-red-500 italic text-sm'>{formik.errors.email}</div>
                                 )}
@@ -105,7 +110,7 @@ const Login = () => {
                                     </div>
                                 </div>
 
-                                <input type='password' name='password' id='password' className="border mb-[10px] border-[#3D4449] border-opacity-25 h-[50px] text-gray-900 text-[16px]  rounded-[10px] focus:ring-primary-600 focus:border-[#3D4449] block w-full p-2.5 focus:outline-none dark:focus:ring-blue-500 dark:focus:border-[#3D4449]" value={password} onChange={e => passwordInput(e)} />
+                                <input type='password' name='password' id='password' className="border mb-[10px] border-[#3D4449] border-opacity-25 h-[50px] text-gray-900 text-[16px]  rounded-[10px] focus:ring-primary-600 focus:border-[#3D4449] block w-full p-2.5 focus:outline-none dark:focus:ring-blue-500 dark:focus:border-[#3D4449]" value={data.password} onChange={e => handleInput(e)} />
                                 {formik.touched.password && formik.errors.password && (
                                     <div className='flex-1 flex items-center ms-3 text-red-500 italic text-sm'>{formik.errors.password}</div>
                                 )}

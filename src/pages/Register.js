@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import { useFormik } from "formik";
-import UserApi from '../api/Api';
+import { UserApi } from '../api/Api';
 import * as Yup from "yup";
 import '../dist/output.css';
 import { useSelector } from 'react-redux';
@@ -13,7 +13,7 @@ function Register() {
 
     const navigate = useNavigate();
 
-    const [input, setInput] = useState({
+    const [data, setData] = useState({
         username: "",
         firstname: "",
         lastname: "",
@@ -24,7 +24,7 @@ function Register() {
     })
 
     useEffect(() => {
-        console.log(input)
+        console.log(data)
     })
 
     const validateSchema = Yup.object().shape({
@@ -60,20 +60,24 @@ function Register() {
 
     const handleInput = (e) => {
         console.log(e.target.value)
-        setInput(prevState => ({
+        setData(prevState => ({
             ...prevState,
             [e.target.name]: e.target.value
         }))
     }
 
     const register = (e) => {
-        UserApi.Register(input.email, input.firstname, input.lastname, input.phoneNumber, input.password, input.username, input.address).then(res => {
+        let dataToSend = {
+            ...data,
+            FullName: `${data.firstname}_${data.lastname}`
+        }
+        UserApi.Register(dataToSend).then(res => {
             console.log(res.data)
             alert(res.data)
 
             if (res.status === 200) {
                 setTimeout(() => {
-                    navigate("/")
+                    navigate("/login")
                 }, 3000)
             }
         })

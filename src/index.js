@@ -5,6 +5,9 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import CreateArtwork from './pages/CreateArtwork';
+import ManageArtwork from './pages/ManageArtwork';
+import EditArtwork from './pages/EditArtwork';
 import { Provider } from 'react-redux';
 import store from './store/store';
 import { AboutUs } from './pages/AboutUs';
@@ -22,18 +25,29 @@ const router = createBrowserRouter([
     element: <App />,
   },
   {
-    path: "/Login",
+    path: "/login",
     element: <Login />
   },
   {
-    path: "/Register",
+    path: "/register",
     element: <Register />
   },
   {
     path:"/AboutUs",
     element: <AboutUs />
   },
-  
+  {
+    path: "/new-artwork",
+    element: <CreateArtwork />
+  },
+  {
+    path: "/manage-artwork",
+    element: <ManageArtwork />
+  },
+  {
+    path: "/edit-artwork",
+    element: <EditArtwork />
+  },
 ]);
 
 root.render(
