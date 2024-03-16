@@ -7,6 +7,8 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import { Provider } from 'react-redux';
 import store from './store/store';
+import { AboutUs } from './pages/AboutUs';
+
 import {
   createBrowserRouter,
   RouterProvider,
@@ -26,6 +28,10 @@ const router = createBrowserRouter([
   {
     path: "/Register",
     element: <Register />
+  },
+  {
+    path:"/AboutUs",
+    element: <AboutUs />
   }
 ]);
 

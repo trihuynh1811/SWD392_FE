@@ -34,11 +34,11 @@ const displayLoginRegisterButton = accessToken !== null ?
               <div className="hidden justify-center items-center  lg:flex lg:w-auto lg:order-1" id="mobile-menu-2">
                 <ul className="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0">
                   <li>
-                    <Link to={"#"} className="block text-[18px] text-[#3D4449]   hover:text-[#F8939C] lg:hover:bg-transparent font-medium lg:border-0 lg:hover:text-primary-700 lg:p-0">Home</Link>
+                    <Link to={"/"} className="block text-[18px] text-[#3D4449]   hover:text-[#F8939C] lg:hover:bg-transparent font-medium lg:border-0 lg:hover:text-primary-700 lg:p-0">Home</Link>
                   </li>
 
                   <li>
-                    <Link to={"#"} className="block text-[#3D4449]  hover:text-[#F8939C]  font-medium text-[18px]">About us</Link>
+                    <Link to={"/AboutUs"}  className="block text-[#3D4449]  hover:text-[#F8939C]  font-medium text-[18px]">About us</Link>
                   </li>
                   <li>
                     <Link to={"#"} className="block text-[18px] text-[#3D4449]  hover:bg-gray-50 lg:hover:bg-transparent font-medium lg:border-0 lg:hover:text-[#F8939C] lg:p-0">Gallery</Link>
