@@ -2,9 +2,8 @@ import poster_1 from '../image/AboutUs/poster1.png';
 import poster_2 from '../image/AboutUs/poster2.png';
 import poster_3 from '../image/AboutUs/poster3.png';
 import banner from '../image/AboutUs/banner.png';
-import line_header from '../image/AboutUs/line_header.png';
 import line_stat from '../image/AboutUs/line_between.png'
-import { Header } from '../components/header/Header';
+import { HeaderOutSide } from '../components/header/Header_outside';
 import { Footer } from '../components/footer/Footer';
 import '../css/AboutUs/AboutUs.css';
 import { Link } from 'react-router-dom';
@@ -13,13 +12,11 @@ export const AboutUs = () => {
   return (
 
     <>
-      <Header></Header>
+
 
 
       <div className='aboutUs_container bg-[#F4F1E4] pb-[40px]'>
-        <div className='flex justify-center pt-[23px]'>
-          <img className='w-[1400px]' src={line_header} alt="" />
-        </div>
+        <HeaderOutSide></HeaderOutSide>
         {/*  */}
         <div className='flex justify-center px-[107px] mt-[85px]'>
           <div className='w-[50%]'>

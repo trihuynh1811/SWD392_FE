@@ -14,13 +14,16 @@ import { Header } from '../components/header/Header';
 function Gallery() {
 
     return (
-        <>
+        <div className='bg-[#F4F1E4]'>
             <Header></Header>
+            <div className='gallery_container'>
+
+            </div>
             <div style={{ minHeight: '100vh' }}>
-                hello
+                
             </div>
             <Footer></Footer>
-        </>
+        </div>
     )
 }
 
