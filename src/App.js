@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import React, {useState} from 'react';
+import React from 'react';
 import './dist/output.css';
 import { useSelector } from 'react-redux';
 import './css/app.css';
@@ -12,7 +12,6 @@ import { Intro } from './components/homepage/Intro';
 import { Benefit } from './components/homepage/Benefits';
 
 function App() {
-  const[currentPage,setCurrentPage] = useState('home');
 
 
   return (
