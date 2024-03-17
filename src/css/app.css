@@ -11,3 +11,10 @@ body {
 .active {
   color: #F8939C !important;
 }
+
+.artwork_card{
+  box-shadow: 14px 12px 0px 0px #E1AFF5;
+}
+.price{
+  font-family: 'Modern Antiqua', sans-serif;
+}
