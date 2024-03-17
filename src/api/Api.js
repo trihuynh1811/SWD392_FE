@@ -21,6 +21,10 @@ export const UserApi = {
                 'Content-Type': 'application/json'
             }
         })
+    },
+
+    GetAllCreator: () => {
+        return api.get('get-creators')
     }
 }
 

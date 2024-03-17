@@ -13,12 +13,15 @@ import { Header } from '../components/header/Header';
 import login_img from '../image/LoginSignUp/Login_Img.png'
 import raiden from '../image/Raiden_Rising_Render.webp'
 import jwt_decode from "jwt-decode"
+import { setArtworkTypes } from '../store/artworkTypeActions';
 
 function ManageArtwork() {
     const [artworkList, setArtworkList] = useState([])
     const [currentArtworkList, setCurrentArtworkList] = useState([])
     const accessToken = useSelector((state) => state.auth.accessToken);
     const currentUser = useSelector((state) => state.currentUser.user);
+    const artworkTypes = useSelector((state) => state.artworkType.artworkTypes)
+    const dispatch = useDispatch();
 
     console.log(currentUser)
     const navigate = useNavigate();
@@ -28,6 +31,14 @@ function ManageArtwork() {
         if (accessToken === null) {
             navigate("/login")
             return
+        }
+        if (artworkTypes.length <= 0) {
+            ArtworkApi.GetAllArtworkType().then(res => {
+                dispatch(setArtworkTypes(res.data))
+            }).catch(e => console.log(e))
+        }
+        else {
+            console.log(artworkTypes)
         }
         ArtworkApi.GetAllArtworkByUserId(currentUser.userId)
             .then(res => {

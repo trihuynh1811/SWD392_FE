@@ -7,7 +7,6 @@ import '../dist/output.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { setAccessToken } from '../store/authActions';
 import PreviewFile from '../components/PreviewFile';
-import axios from 'axios';
 import { Footer } from '../components/footer/Footer';
 import { Header } from '../components/header/Header';
 import { setArtworkTypes } from '../store/artworkTypeActions';
@@ -16,7 +15,6 @@ import { setArtworkTypes } from '../store/artworkTypeActions';
 function CreateArtwork() {
     const accessToken = useSelector((state) => state.auth.accessToken);
     const artworkTypes = useSelector((state) => state.artworkType.artworkTypes)
-    const dispatch = useDispatch()
 
     const [artworkTypesList, setArtworkTypesList] = useState([])
     console.log(accessToken)
@@ -28,16 +26,8 @@ function CreateArtwork() {
             return
         }
         window.scrollTo(0, 0)
-        if (artworkTypes.length <= 0) {
-            ArtworkApi.GetAllArtworkType().then(res => {
-                setArtworkTypesList(res.data)
-                dispatch(setArtworkTypes(res.data))
-            }).then(e => console.log(e))
-        }
-        else {
-            console.log(artworkTypes)
-            setArtworkTypesList(artworkTypes)
-        }
+        console.log(artworkTypes)
+        setArtworkTypesList(artworkTypes)
     }, [])
 
     const [formData, setFormData] = useState({

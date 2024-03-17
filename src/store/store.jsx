@@ -6,7 +6,7 @@ import artworkTypeReducer from './artworkTypeReducer';
 const rootReducer = combineReducers({
     auth: authReducer,
     currentUser: userReducer,
-    artworkType: artworkTypeReducer
+    artworkType: artworkTypeReducer,
 });
 
 const store = createStore(rootReducer);
