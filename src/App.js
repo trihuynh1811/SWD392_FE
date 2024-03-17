@@ -11,6 +11,7 @@ import { Header } from './components/header/Header';
 import { Intro } from './components/homepage/Intro';
 import { Benefit } from './components/homepage/Benefits';
 import { Discord } from './components/homepage/Discord';
+import { ArtworksView } from './components/homepage/ArtworksView';
 import ManageArtwork from './pages/ManageArtwork';
 
 
@@ -23,6 +24,8 @@ function App() {
       <Intro></Intro>
       <Benefit></Benefit>
       <Discord></Discord>
+      <ArtworksView></ArtworksView>
+
       <div className="App" style={{ minHeight: "100vh" }}>
         
       </div>
