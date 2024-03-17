@@ -8,8 +8,12 @@ import Register from './pages/Register';
 import CreateArtwork from './pages/CreateArtwork';
 import ManageArtwork from './pages/ManageArtwork';
 import EditArtwork from './pages/EditArtwork';
+import Gallery from './pages/Gallery';
+import { Pricing } from './pages/Pricing';
 import { Provider } from 'react-redux';
 import store from './store/store';
+import { AboutUs } from './pages/AboutUs';
+
 import {
   createBrowserRouter,
   RouterProvider,
@@ -31,6 +35,10 @@ const router = createBrowserRouter([
     element: <Register />
   },
   {
+    path:"/AboutUs",
+    element: <AboutUs />
+  },
+  {
     path: "/new-artwork",
     element: <CreateArtwork />
   },
@@ -42,6 +50,14 @@ const router = createBrowserRouter([
     path: "/edit-artwork",
     element: <EditArtwork />
   },
+  {
+    path:"/gallery",
+    element: <Gallery/>
+  },
+  {
+    path:"/pricing",
+    element:<Pricing />
+  }
 ]);
 
 root.render(
