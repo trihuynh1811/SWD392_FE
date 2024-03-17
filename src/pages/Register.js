@@ -67,6 +67,9 @@ function Register() {
     }
 
     const register = (e) => {
+        if (Object.entries(formik.errors).length !== 0) {
+            return
+        }
         let dataToSend = {
             ...data,
             FullName: `${data.firstname}_${data.lastname}`
