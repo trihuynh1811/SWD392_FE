@@ -44,7 +44,7 @@ export const HeaderOutSide = () => {
                     <Link to={"/"} className=" text-[18px] text-[#3D4449]   hover:text-[#F8939C] lg:hover:bg-transparent font-medium lg:border-0 lg:hover:text-primary-700 lg:p-0">Home</Link>
                   </li>
                   <li>
-                    <Link to={"/AboutUs"} className=" text-[#3D4449]  hover:text-[#F8939C]  font-medium text-[18px]">About us</Link>
+                    <Link to={"/about-us"} className=" text-[#3D4449]  hover:text-[#F8939C]  font-medium text-[18px]">About us</Link>
                   </li>
                   <li>
                     <Link to={"/gallery"} className="text-[18px] text-[#3D4449]  hover:bg-gray-50 lg:hover:bg-transparent font-medium lg:border-0 lg:hover:text-[#F8939C] lg:p-0">Gallery</Link>
