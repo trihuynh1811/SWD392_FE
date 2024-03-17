@@ -8,13 +8,22 @@ body {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
 .active {
   color: #F8939C !important;
 }
 
-.artwork_card{
+.artwork_card {
   box-shadow: 14px 12px 0px 0px #E1AFF5;
 }
-.price{
+
+.price {
   font-family: 'Modern Antiqua', sans-serif;
+}
+
+.gallery_title {
+  background: linear-gradient(90deg, #FF6C79 0%, #FFC107 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }

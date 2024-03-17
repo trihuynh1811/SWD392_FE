@@ -56,8 +56,10 @@ function Gallery() {
         const formatedPrice = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'VND' }).format(price);
 
         return (<div key={artwork.id} className="">
+            
             {/* Render your data here */}
             <div className="relative bg-[#FEFEFE] artwork_card flex-shrink-0 w-[340px] h-[450px] border border-black" role='button' onClick={() => seeArtworkDetail(artwork.id)}>
+                
                 <div className='pl-[15px] pt-[10px] flex items-center gap-[100px]'>
                     <div className='text-[#3D4449] text-[16px] font-bold'>{artwork.userName} VantCii.meart</div>
                     <div className='flex items-center'>
@@ -101,8 +103,9 @@ function Gallery() {
 
                 </div>
             </div>
+            <h1 className='text-[48px] text-[#3D4449] font-bold text-center mt-[50px]'> <span className='gallery_title'>Artwork</span> Gallery🎨</h1>
             <div style={{ minHeight: '100vh' }}>
-                <div className='flex justify-center mt-[128px] mb-[150px]'>
+                <div className='flex justify-center mt-[50px] mb-[150px]'>
                     <div className="grid grid-cols-3 gap-x-[80px] gap-y-[80px]">
                         {artworkList.length > 0 && renderAllArtwork}
                     </div>
