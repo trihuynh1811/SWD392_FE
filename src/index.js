@@ -1,33 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import CreateArtwork from './pages/CreateArtwork';
+import ManageArtwork from './pages/ManageArtwork';
+import EditArtwork from './pages/EditArtwork';
+import Gallery from './pages/Gallery';
+
 import { Provider } from 'react-redux';
 import store from './store/store';
+import { AboutUs } from './pages/AboutUs';
+
 import {
-  createBrowserRouter,
-  RouterProvider,
+  RouterProvider
 } from "react-router-dom";
+import { router } from './components/router';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <App />,
-  },
-  {
-    path: "/Login",
-    element: <Login />
-  },
-  {
-    path: "/Register",
-    element: <Register />
-  }
-]);
 
 root.render(
   <React.StrictMode>

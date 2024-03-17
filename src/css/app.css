@@ -1,0 +1,10 @@
+body {
+  font-family: "Comfortaa", sans-serif;
+}
+
+.price_btn {
+  background: linear-gradient(90deg, #F8939C 0%, #FFD586 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

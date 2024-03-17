@@ -1,37 +1,70 @@
 import Axios from "axios";
 
 const api = Axios.create({
-    baseURL: "https://localhost:7147/",
-    headers: {
-        crossDomain: true, // Set crossDomain to true
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    }
+    baseURL: "https://localhost:44394/api/"
 })
 
-const UserApi = {
-    Login: (email, password) => {
-        let logindto = {
-            Email: email,
-            Password: password
-        }
-
-        return api.post('login', logindto)
+export const UserApi = {
+    Login: (data) => {
+        return api.post('User/login', data, {
+            headers: {
+                crossDomain: true,
+                'Content-Type': 'application/json'
+            }
+        })
     },
 
-    Register: (email, firstname, lastname, phoneNumber, password, username, address) => {
-        let registerdto = {
-            Email: email,
-            FullName: `${firstname}_${lastname}`,
-            Password: password,
-            Phone: phoneNumber,
-            Address: address,
-            Username: username
-        }
+    Register: (data) => {
+        return api.post('User/register', data, {
+            headers: {
+                crossDomain: true,
+                'Content-Type': 'application/json'
+            }
+        })
+    },
 
-        return api.post('register', registerdto)
+    GetAllCreator: () => {
+        return api.get('get-creators')
     }
 }
 
-export default UserApi;
+export const ArtworkApi = {
+    CreateArtwork: (token, data) => {
+        return api.post('Artwork/add-artwork', data, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+                crossDomain: true,
+                'Content-Type': 'multipart/form-data',
+            }
+        })
+    },
+
+    GetAllArtwork: () => {
+        return api.get('Artwork/get-all-artworks')
+    },
+
+    GetAllArtworkByUserId: (id) => {
+        return api.get(`Artwork/get-artworks/user/${id}`)
+    },
+
+    GetArtworkById: (id) => {
+        return api.get(`Artwork/get-artwork/${id}`)
+    },
+
+    UpdateArtworkById: (id, data, token) => {
+        return api.put(`Artwork/update-artwork/${id}`, data, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+                crossDomain: true,
+                'Content-Type': 'application/json',
+            }
+        })
+
+    },
+
+    GetAllArtworkType: () => {
+        return api.get('ArtworkType/get-all-artwork-types')
+    }
+
+
+}
