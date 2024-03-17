@@ -73,7 +73,10 @@ export const HeaderOutSide = () => {
             </div>
           </div>
           <div className='flex justify-center pt-[23px]'>
-            <img className='w-[1400px]' src={line_header} alt="" />
+            <div>
+              <img className='w-[1500px]' src={line_header} alt="" />
+            </div>
+
           </div>
         </nav>
       </header>
