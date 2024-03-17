@@ -10,9 +10,10 @@ import { Footer } from './components/footer/Footer';
 import { Header } from './components/header/Header';
 import { Intro } from './components/homepage/Intro';
 import { Benefit } from './components/homepage/Benefits';
+import ManageArtwork from './pages/ManageArtwork';
+
 
 function App() {
-  
 
 
   return (
@@ -23,7 +24,7 @@ function App() {
       <div className="App" style={{ minHeight: "100vh" }}>
         
       </div>
-
+      
 
 
       

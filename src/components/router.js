@@ -9,6 +9,8 @@ import ManageArtwork from '../pages/ManageArtwork';
 import EditArtwork from '../pages/EditArtwork';
 import Gallery from '../pages/Gallery';
 import ArtworkDetail from "../pages/ArtworkDetail";
+import { Pricing } from '../pages/Pricing';
+import { AboutUs } from "../pages/AboutUs";
 
 export const router = createBrowserRouter([
     {
@@ -42,5 +44,13 @@ export const router = createBrowserRouter([
     {
         path: "/artwork-detail",
         element: <ArtworkDetail />
+    },
+    {
+        path: "/pricing",
+        element: <Pricing />
+    },
+    {
+        path: "/about-us",
+        element: <AboutUs />
     }
 ]);

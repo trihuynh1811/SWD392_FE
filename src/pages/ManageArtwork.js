@@ -71,7 +71,7 @@ function ManageArtwork() {
     const renderListOfArtwork = currentArtworkList.map((artwork, index) => (
         <div key={index} className="bg-slate-100 rounded-lg flex mx-3 my-3">
             <div className="w-1/5 rounded-lg px-3 py-3 flex justify-center items-center">
-                <img src={artwork.imagePath} className="w-full h-44 object-cover max-w-full max-h-44 rounded-lg" />
+                <img src={artwork.imagePath} className="w-full h-44 object-cover max-w-full max-h-44 rounded-lg" alt=''/>
             </div>
             <div className="w-3/5 px-3 py-3 flex flex-col border-e-2 border-black justify-between">
                 <div className="flex"><div className="w-14">Name:</div> <div className="capitalize ms-4 w-full">{artwork.name}</div></div>
@@ -80,10 +80,10 @@ function ManageArtwork() {
                 <div className="flex"><div className="w-14">Price:</div> <div className="ms-4 w-full">{artwork.price}</div></div>
             </div>
             <div className="flex justify-center items-center flex-col w-1/5">
-                <button type="button" id="createProductButton" data-modal-toggle="createProductModal" className="flex items-center justify-center text-black bg-primary-700 border-2 border-blue-500 hover:bg-blue-500 hover:text-white focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-4 py-2 px-3 w-1/2" onClick={() => redirectTo("editArtwork", artwork.id)}>
+                <button type="button" id="createProductButton" data-modal-toggle="createProductModal" className="flex items-center justify-center text-black bg-primary-700 border-2 border-blue-500 hover:bg-blue-500 hover:text-white focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-4 py-2 w-1/2" onClick={() => redirectTo("editArtwork", artwork.id)}>
                     Edit
                 </button>
-                <button type="button" id="createProductButton" data-modal-toggle="createProductModal" className="flex items-center justify-center bg-primary-700 border-2 bg-red-500 text-white focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-4 py-2 px-3 w-1/2">
+                <button type="button" id="createProductButton" data-modal-toggle="createProductModal" className="flex items-center justify-center bg-primary-700 border-2 bg-red-500 text-white focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-4 py-2 w-1/2">
                     Delete
                 </button>
             </div>
@@ -132,4 +132,4 @@ function ManageArtwork() {
     )
 }
 
-export default ManageArtwork
+export default ManageArtwork;

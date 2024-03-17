@@ -1,13 +1,13 @@
 import { Link } from 'react-router-dom';
 import React from 'react';
+import '../../css/app.css'
 import { useSelector } from 'react-redux';
 import line_between from '../../image/Header/line_between.png'
-import '../../css/app.css';
+import line_header from '../../image/Header/line_header.png'
 
 
 
-
-export const Header = () => {
+export const HeaderOutSide = () => {
   const accessToken = useSelector((state) => state.auth.accessToken)
 
   console.log(accessToken)
@@ -44,7 +44,7 @@ export const Header = () => {
                     <Link to={"/"} className=" text-[18px] text-[#3D4449]   hover:text-[#F8939C] lg:hover:bg-transparent font-medium lg:border-0 lg:hover:text-primary-700 lg:p-0">Home</Link>
                   </li>
                   <li>
-                    <Link to={"/about-us"} className=" text-[#3D4449]  hover:text-[#F8939C]  font-medium text-[18px]">About us</Link>
+                    <Link to={"/AboutUs"} className=" text-[#3D4449]  hover:text-[#F8939C]  font-medium text-[18px]">About us</Link>
                   </li>
                   <li>
                     <Link to={"/gallery"} className="text-[18px] text-[#3D4449]  hover:bg-gray-50 lg:hover:bg-transparent font-medium lg:border-0 lg:hover:text-[#F8939C] lg:p-0">Gallery</Link>
@@ -54,11 +54,11 @@ export const Header = () => {
                     <button className='bg-black px-[8px] py-[11px] rounded-[10px]'>
                       <Link to={"/pricing"} className="price_btn text-[18px]  hover:bg-gray-50 lg:hover:bg-transparent font-medium lg:border-0 lg:hover:text-[#F8939C] lg:p-0">Get Pro</Link>
                     </button>
-
                   </li>
                   <li>
                     <img className='h-[42px] opacity-60' src={line_between} alt="" />
                   </li>
+
                 </ul>
               </div>
               <div className='order-last ml-[-10px]'>
@@ -70,6 +70,9 @@ export const Header = () => {
                 </button>
               </div>
             </div>
+          </div>
+          <div className='flex justify-center pt-[23px]'>
+            <img className='w-[1400px]' src={line_header} alt="" />
           </div>
         </nav>
       </header>
