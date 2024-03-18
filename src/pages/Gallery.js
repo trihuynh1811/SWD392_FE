@@ -12,6 +12,9 @@ import { Footer } from '../components/footer/Footer';
 import { HeaderOutSide } from '../components/header/Header_outside';
 import { setArtworkTypes } from '../store/artworkTypeActions';
 import { setCreatorList } from '../store/userActions';
+import '../css/app.css';
+import clock_icon from '../image/Icon/clock_icon.png'
+import money_icon from '../image/Icon/money_icon.png';
 
 function Gallery() {
     const [artworkList, setArtworkList] = useState([])
@@ -43,17 +46,43 @@ function Gallery() {
     const seeArtworkDetail = (id) => {
         navigate(`/artwork-detail?id=${id}`)
     }
+    // handle date format
 
-    const renderAllArtwork = artworkList.map((artwork, index) => (
-        <div key={artwork.id} className="w-1/4 p-4">
+    const renderAllArtwork = artworkList.map((artwork, index) => {
+        const fullFormatCreatedDay = artwork.createdDate;
+        const formatCreatedDate = new Date(fullFormatCreatedDay).toLocaleDateString("en-Us");
+
+        const price = artwork.price;
+        const formatedPrice = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'VND' }).format(price);
+
+        return (<div key={artwork.id} className="">
+            
             {/* Render your data here */}
-            <div className="bg-gray-200 p-4 rounded shadow" role='button' onClick={() => seeArtworkDetail(artwork.id)}>
-                <img src={artwork.imagePath} className='w-full h-auto object-cover' alt={artwork.name} />
-                <p>{artwork.name}</p>
-                <p>{artwork.price}</p>
+            <div className="relative bg-[#FEFEFE] artwork_card flex-shrink-0 w-[340px] h-[450px] border border-black" role='button' onClick={() => seeArtworkDetail(artwork.id)}>
+                
+                <div className='pl-[15px] pt-[10px] flex items-center gap-[100px]'>
+                    <div className='text-[#3D4449] text-[16px] font-bold'>{artwork.userName} VantCii.meart</div>
+                    <div className='flex items-center'>
+                        <img src={clock_icon} alt="" />
+                        <p className='text-[#9CA3A8]'>{formatCreatedDate}</p>
+                    </div>
+                </div>
+
+                <div className='ml-[15px] mt-[40px]'>
+                    <p className='text-[#A67E4E] font-bold text-[30px]'>{artwork.name}</p>
+                    <div className='flex items-start gap-[5px]'>
+                        <img src={money_icon} className='' alt="" />
+                        <p className='text-[18px] price text-[#3D4449]'>{formatedPrice}</p>
+                    </div>
+                </div>
+
+                <div className='flex justify-center '>
+                    <img src={artwork.imagePath} className='absolute bottom-[15px] border border-black w-[310px] h-[282px] object-cover' alt={artwork.name} />
+                </div>
             </div>
-        </div>
-    ))
+
+        </div>)
+    })
 
     return (
         <div className='bg-[#F4F1E4]'>
@@ -74,9 +103,12 @@ function Gallery() {
 
                 </div>
             </div>
+            <h1 className='text-[48px] text-[#3D4449] font-bold text-center mt-[50px]'> <span className='gallery_title'>Artwork</span> Gallery🎨</h1>
             <div style={{ minHeight: '100vh' }}>
-                <div className="flex flex-wrap">
-                    {artworkList.length > 0 && renderAllArtwork}
+                <div className='flex justify-center mt-[50px] mb-[150px]'>
+                    <div className="grid grid-cols-3 gap-x-[80px] gap-y-[80px]">
+                        {artworkList.length > 0 && renderAllArtwork}
+                    </div>
                 </div>
             </div>
             <Footer></Footer>

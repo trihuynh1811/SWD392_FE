@@ -4,6 +4,7 @@ import '../../css/app.css'
 import { useSelector } from 'react-redux';
 import line_between from '../../image/Header/line_between.png'
 import line_header from '../../image/Header/line_header.png'
+import './TabChange.js';
 
 
 
@@ -22,7 +23,7 @@ export const HeaderOutSide = () => {
     )
   const displayManageArtwork = accessToken !== null ? (
     <li>
-      <Link to={"/manage-artwork"} className="block text-[18px] text-[#3D4449]   hover:text-[#F8939C] lg:hover:bg-transparent font-medium lg:border-0 lg:hover:text-primary-700 lg:p-0">Your Artwork</Link>
+      <Link to={"/manage-artwork"} className="tab-item block text-[18px] text-[#3D4449]   hover:text-[#F8939C] lg:hover:bg-transparent font-medium lg:border-0 lg:hover:text-primary-700 lg:p-0">Your Artwork</Link>
     </li>
   ) : (null)
   return (
@@ -41,13 +42,13 @@ export const HeaderOutSide = () => {
               <div className=" flex-shrink-0 lg:order-1" id="mobile-menu-2">
                 <ul className="flex flex-nowrap overflow-auto justify-center items-center mt-4 font-medium gap-[30px] lg:mt-0">
                   <li>
-                    <Link to={"/"} className=" text-[18px] text-[#3D4449]   hover:text-[#F8939C] lg:hover:bg-transparent font-medium lg:border-0 lg:hover:text-primary-700 lg:p-0">Home</Link>
+                    <Link to={"/"} className="tab-item text-[18px] text-[#3D4449]   hover:text-[#F8939C] lg:hover:bg-transparent font-medium lg:border-0 lg:hover:text-primary-700 lg:p-0">Home</Link>
                   </li>
                   <li>
-                    <Link to={"/about-us"} className=" text-[#3D4449]  hover:text-[#F8939C]  font-medium text-[18px]">About us</Link>
+                    <Link to={"/about-us"} className="tab-item text-[#3D4449]  hover:text-[#F8939C]  font-medium text-[18px]">About us</Link>
                   </li>
                   <li>
-                    <Link to={"/gallery"} className="text-[18px] text-[#3D4449]  hover:bg-gray-50 lg:hover:bg-transparent font-medium lg:border-0 lg:hover:text-[#F8939C] lg:p-0">Gallery</Link>
+                    <Link to={"/gallery"} className="tab-item text-[18px] text-[#3D4449]  hover:bg-gray-50 lg:hover:bg-transparent font-medium lg:border-0 lg:hover:text-[#F8939C] lg:p-0">Gallery</Link>
                   </li>
                   {displayManageArtwork}
                   <li>
@@ -72,7 +73,10 @@ export const HeaderOutSide = () => {
             </div>
           </div>
           <div className='flex justify-center pt-[23px]'>
-            <img className='w-[1400px]' src={line_header} alt="" />
+            <div>
+              <img className='w-[1500px]' src={line_header} alt="" />
+            </div>
+
           </div>
         </nav>
       </header>
