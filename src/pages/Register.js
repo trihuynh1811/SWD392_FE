@@ -6,10 +6,7 @@ import * as Yup from "yup";
 import '../dist/output.css';
 import '../css/Login-Register/Register.css';
 import register_img from '../image/LoginSignUp/Register_Img.jpg';
-import { useDispatch, useSelector } from 'react-redux';
-import { setAccessToken } from '../store/authActions';
-import { setCurrentUser } from '../store/userActions';
-import jwt_decode from "jwt-decode";
+import { useSelector } from 'react-redux';
 
 function Register() {
     // const register = (e) => {
@@ -32,7 +29,6 @@ function Register() {
     console.log(accessToken);
 
     const navigate = useNavigate();
-    const dispatch = useDispatch();
     const [data, setData] = useState({
         email: "",
         password: "",
@@ -96,14 +92,11 @@ function Register() {
         if (Object.entries(formik.errors).length !== 0) {
             return;
         };
-        UserApi.Register(data).then(res => {
-            var token = res.data
-            var user = jwt_decode(token)
-            console.log(user)
-            dispatch(setCurrentUser(user))
-            dispatch(setAccessToken(token));
-            console.log(token)
-
+        let dataToSend = {
+            ...data,
+            role: parseInt(data.role)
+        };
+        UserApi.Register(dataToSend).then(res => {
             if (res.status === 200) {
                 console.log(res.status);
                 navigate("/")
