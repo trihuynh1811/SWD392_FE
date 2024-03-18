@@ -142,7 +142,7 @@ function Register() {
                                 <div className="w-[48%] justify-center">
                                     <label htmlFor="phone" className="block mb-2 text-sm font-medium text-gray-900">Phone</label>
                                     <input
-                                        type='number'
+                                        type='text'
                                         name='phone'
                                         id='phone'
                                         className="border border-[#3D4449] border-opacity-25 h-[50px] text-gray-900 text-[16px]  rounded-[10px] focus:ring-primary-600 focus:border-[#3D4449] block w-full p-2.5 focus:outline-none dark:focus:ring-blue-500 dark:focus:border-[#3D4449]"
