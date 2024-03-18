@@ -10,7 +10,7 @@ export const Intro = () => {
   return (
     <div>
       <div className='home_conteiner relative'>
-        <div className='relative z-[999] flex justify-center items-center mt-[70px] gap-[10px]'>
+        <div className='relative z-[99] flex justify-center items-center mt-[70px] gap-[10px]'>
           <div className=''>
             <h1 className='text-[65px] leading-[85px] font-bold w-[845px] tracking-[3px]'><span className='text-[#3D4449]'>Explore great artworks,</span> <span className='text-[#F8939C]'>faster</span></h1>
             <p className='text-[#787779] w-[680px] text-[17px] font-light mt-[20px] tracking-[1.15px] leading-[26px] mb-[55px]'>Dive into a world of creativity. Explore unique artworks that tell captivating stories. Discover a gallery of endless inspiration. Welcome to ProAs!</p>
