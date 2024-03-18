@@ -53,7 +53,7 @@ export const Pricing = () => {
           </div>
           <div className='flex justify-center'>
             <button className='  mt-[48px]'>
-              <Link className='upgrade_btn py-[12px] px-[106px] text-[16px] text-[#3D4449] font-bold bg-[#FFD586] rounded-[12px] lg:hover:bg-[black] lg:hover:text-[#fefefe]'>Upgrade</Link>
+              <Link to={"/checkout"} className='upgrade_btn py-[12px] px-[106px] text-[16px] text-[#3D4449] font-bold bg-[#FFD586] rounded-[12px] lg:hover:bg-[black] lg:hover:text-[#fefefe]'>Upgrade</Link>
             </button>
           </div>
           {/* rights */}
@@ -87,7 +87,7 @@ export const Pricing = () => {
           </div>
           <div className='flex justify-center'>
             <button className='mt-[48px] '>
-              <Link className='upgrade_btn py-[12px] px-[106px] text-[16px] text-[#3D4449] font-bold bg-[#FFD586] rounded-[12px] lg:hover:bg-[black] lg:hover:text-[#fefefe]'>Upgrade</Link>
+              <Link to={"/checkout"} className='upgrade_btn py-[12px] px-[106px] text-[16px] text-[#3D4449] font-bold bg-[#FFD586] rounded-[12px] lg:hover:bg-[black] lg:hover:text-[#fefefe]'>Upgrade</Link>
             </button>
           </div>
           {/* rights */}
@@ -143,7 +143,7 @@ export const Pricing = () => {
           </div>
           <div className='flex justify-center'>
             <button className='  mt-[48px]'>
-              <Link className='upgrade_btn py-[12px] px-[106px] text-[16px] text-[#3D4449] font-bold bg-[#FFD586] rounded-[12px] lg:hover:bg-[black] lg:hover:text-[#fefefe]'>Start for free</Link>
+              <Link to={"/login"} className='upgrade_btn py-[12px] px-[106px] text-[16px] text-[#3D4449] font-bold bg-[#FFD586] rounded-[12px] lg:hover:bg-[black] lg:hover:text-[#fefefe]'>Start for free</Link>
             </button>
           </div>
           {/* rights */}
@@ -168,7 +168,7 @@ export const Pricing = () => {
           </div>
           <div className='flex justify-center'>
             <button className='  mt-[48px]'>
-              <Link className='upgrade_btn py-[12px] px-[106px] text-[16px] text-[#3D4449] font-bold bg-[#FFD586] rounded-[12px] lg:hover:bg-[black] lg:hover:text-[#fefefe]'>Upgrade</Link>
+              <Link to={"/login"} className='upgrade_btn py-[12px] px-[106px] text-[16px] text-[#3D4449] font-bold bg-[#FFD586] rounded-[12px] lg:hover:bg-[black] lg:hover:text-[#fefefe]'>Upgrade</Link>
             </button>
           </div>
           {/* rights */}
@@ -202,7 +202,7 @@ export const Pricing = () => {
           </div>
           <div className='flex justify-center'>
             <button className='mt-[48px] '>
-              <Link className='upgrade_btn py-[12px] px-[106px] text-[16px] text-[#3D4449] font-bold bg-[#FFD586] rounded-[12px] lg:hover:bg-[black] lg:hover:text-[#fefefe]'>Upgrade</Link>
+              <Link to={"/login"} className='upgrade_btn py-[12px] px-[106px] text-[16px] text-[#3D4449] font-bold bg-[#FFD586] rounded-[12px] lg:hover:bg-[black] lg:hover:text-[#fefefe]'>Upgrade</Link>
             </button>
           </div>
           {/* rights */}

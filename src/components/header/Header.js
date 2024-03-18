@@ -42,7 +42,7 @@ export const Header = () => {
               <div className=" flex-shrink-0 lg:order-1" id="mobile-menu-2">
                 <ul className="flex flex-nowrap overflow-auto justify-center items-center mt-4 font-medium gap-[30px] lg:mt-0">
                   <li>
-                    <Link to={"/"} className="tab-item active text-[18px] text-[#3D4449] hover:text-[#F8939C] lg:hover:bg-transparent font-medium lg:border-0 lg:hover:text-primary-700 lg:p-0">Home</Link>
+                    <Link to={"/"} className="tab-item text-[18px] text-[#3D4449] hover:text-[#F8939C] lg:hover:bg-transparent font-medium lg:border-0 lg:hover:text-primary-700 lg:p-0">Home</Link>
                   </li>
                   <li>
                     <Link to={"/about-us"} className="tab-item text-[#3D4449]  hover:text-[#F8939C]  font-medium text-[18px]">About us</Link>
