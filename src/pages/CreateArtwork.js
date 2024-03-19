@@ -221,7 +221,12 @@ function CreateArtwork() {
                                             onBlur={formik.handleBlur}
                                         />
                                         {formik.values["ImageUploadRequest"] ? (
-                                            <PreviewFile file={formik.values["ImageUploadRequest"]} height={`${document.querySelector('.uploadImage').offsetHeight}px`} width={`${document.querySelector('.uploadImage').offsetWidth}px`} />
+                                            <PreviewFile file={formik.values["ImageUploadRequest"]}
+                                                height={`${document.querySelector('.uploadImage').offsetHeight}px`}
+                                                width={`${document.querySelector('.uploadImage').offsetWidth}px`}
+                                                className={'preview object-contain'}
+                                                displayPosition={'absolute'}
+                                            />
                                         ) : null}
                                     </label>
                                 </div>

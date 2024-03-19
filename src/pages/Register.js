@@ -41,20 +41,20 @@ function Register() {
     const validateSchema = Yup.object().shape({
         email: Yup.string().email("Please enter a valid email").required("This field is required"),
         password: Yup.string()
-                .required("This field is required")
-                .min(8, "Pasword must be 8 or more characters")
-                .matches(/(?=.*[A-Z])\w+/, "Password must contain at least one uppercase letter")
-                .matches(/(?=.*[a-z])\w+/, "Password must contain at least one lowercase letter")
-                .matches(/\d/, "Password must contain at least one number"),
+            .required("This field is required")
+            .min(8, "Pasword must be 8 or more characters")
+            .matches(/(?=.*[A-Z])\w+/, "Password must contain at least one uppercase letter")
+            .matches(/(?=.*[a-z])\w+/, "Password must contain at least one lowercase letter")
+            .matches(/\d/, "Password must contain at least one number"),
         fullname: Yup.string().required("This field is required"),
         phone: Yup.string()
-                .required('This field is required')
-                .matches(/^[0-9]{10,11}$/, 'Invalid phone number'),
+            .required('This field is required')
+            .matches(/^[0-9]{10,11}$/, 'Invalid phone number'),
         role: Yup.number()
-                .required('This field is required')
-                .integer()
-                .min(2)
-                .max(3)
+            .required('This field is required')
+            .integer()
+            .min(2)
+            .max(3)
     });
 
     const formik = useFormik({
@@ -139,7 +139,8 @@ function Register() {
                                         name='phone'
                                         id='phone'
                                         className="border border-[#3D4449] border-opacity-25 h-[50px] text-gray-900 text-[16px]  rounded-[10px] focus:ring-primary-600 focus:border-[#3D4449] block w-full p-2.5 focus:outline-none dark:focus:ring-blue-500 dark:focus:border-[#3D4449]"
-                                        value={data.phone} onChange={e => { formik.handleChange(e); handleInput(e) }}
+                                        value={data.phone}
+                                        onChange={e => { formik.handleChange(e); handleInput(e) }}
                                         onBlur={formik.handleBlur}
                                     />
                                     {formik.touched.phone && formik.errors.phone && (

@@ -29,6 +29,16 @@ export const UserApi = {
 
     ViewAccountDetail: (id) => {
         return api.get(`User/view-account-detail/${id}`)
+    },
+
+    UpdateAccountDetail: (token, data, id) => {
+        return api.put(`User/update-account/${id}`, data, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+                crossDomain: true,
+                'Content-Type': 'multipart/form-data',
+            }
+        })
     }
 }
 
