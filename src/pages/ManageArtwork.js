@@ -69,7 +69,7 @@ function ManageArtwork() {
         }
     }
 
-    const renderListOfArtwork = currentArtworkList.map((artwork, index) => {
+    const renderListOfArtwork = Array.isArray(currentArtworkList) && currentArtworkList.map((artwork, index) => {
         const price = artwork.price;
         const formatedPrice = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'VND' }).format(price);
         return (
@@ -107,7 +107,6 @@ function ManageArtwork() {
                 </div>
             </div>
         )
-
     })
 
     return (
