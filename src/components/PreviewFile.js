@@ -1,6 +1,6 @@
 import React from 'react';
 
-const PreviewFile = ({ file, width, height }) => {
+const PreviewFile = ({ file, width, height, className, displayPosition }) => {
 
     const [preview, setPreview] = React.useState(null);
 
@@ -19,8 +19,8 @@ const PreviewFile = ({ file, width, height }) => {
     };
 
     return (
-        <div className='absolute' style={{ height: height, width: width }}>
-            <img src={preview} className='preview object-contain' alt="Preview" style={{ height: height, width: width }} />
+        <div className={displayPosition}>
+            <img src={preview} className={className} alt="Preview" style={{ height: height, width: width }} />
         </div>
     )
 

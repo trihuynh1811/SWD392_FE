@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom';
-import { ArtworkApi } from '../api/Api';
-import { useFormik, ErrorMessage } from "formik";
+import { useNavigate } from 'react-router-dom';
+import { ArtworkApi, TagApi } from '../api/Api';
+import { useFormik } from "formik";
 import * as Yup from "yup";
 import '../dist/output.css';
-import { useDispatch, useSelector } from 'react-redux';
-import { setAccessToken } from '../store/authActions';
+import { useSelector } from 'react-redux';
 import PreviewFile from '../components/PreviewFile';
 import { Footer } from '../components/footer/Footer';
 import { Header } from '../components/header/Header';
-import { setArtworkTypes } from '../store/artworkTypeActions';
+import { WithContext as ReactTags } from 'react-tag-input';
 
 
 function CreateArtwork() {
@@ -28,6 +27,15 @@ function CreateArtwork() {
         window.scrollTo(0, 0)
         console.log(artworkTypes)
         setArtworkTypesList(artworkTypes)
+        TagApi.GetAllTags().then((res) => {
+            const tagList = res.data.map((tag, index) => {
+                return {
+                    id: tag.name,
+                    text: tag.name
+                };
+            });
+            setSuggestions(tagList);
+        })
     }, [])
 
     const [formData, setFormData] = useState({
@@ -36,7 +44,8 @@ function CreateArtwork() {
         Price: 0,
         TypeId: 1,
         ArtworkStatus: 'Available',
-        ImageUploadRequest: []
+        ImageUploadRequest: [],
+        Tags: []
     })
 
     const validFileExtensions = { file: ['jpg', 'gif', 'png', 'jpeg', 'svg', 'webp'] };
@@ -95,18 +104,53 @@ function CreateArtwork() {
 
     const submitNewArtwork = async () => {
         if (Object.entries(formik.errors).length !== 0) {
-            return
+            return;
         }
-        console.log(formData)
+        formData.Tags = tags.map((tag, index) => tag.text);
+        console.log(formData);
         ArtworkApi.CreateArtwork(accessToken, formData).then(res => {
             if (res.status === 200) {
-                alert("new artwork created")
-                formik.values.Description = ""
-                formik.values.Name = ""
-                formik.values.ImageUploadRequest = ""
+                alert("New artwork created");
+                navigate('/manage-artwork');
             }
         }).catch(e => console.log(e))
     }
+
+    // Start tag related section
+    const [suggestions, setSuggestions] = useState([]);
+
+    const KeyCodes = {
+        comma: 188,
+        enter: 13
+    };
+
+    const delimiters = [KeyCodes.comma, KeyCodes.enter];
+
+    const [tags, setTags] = useState([]);
+
+    const handleTagDelete = i => {
+        setTags(tags.filter((tag, index) => index !== i));
+    };
+
+    const handleTagAddition = tag => {
+        setTags([...tags, tag]);
+        console.log(tags);
+    };
+
+    const handleTagDrag = (tag, currPos, newPos) => {
+        const newTags = tags.slice();
+
+        newTags.splice(currPos, 1);
+        newTags.splice(newPos, 0, tag);
+
+        // re-render
+        setTags(newTags);
+    };
+
+    const handleTagClick = index => {
+        console.log('The tag at index ' + index + ' was clicked');
+    };
+    // End tag related section
 
     return (
         <>
@@ -159,6 +203,30 @@ function CreateArtwork() {
                                 </div>
 
                                 <div className='col-span-2'>
+                                    <div className='flex justify-between items-center'>
+                                        <label htmlFor="Tags" className="block mb-2 text-sm font-medium text-gray-900">Tags</label>
+                                    </div>
+                                    <ReactTags
+                                        classNames={{
+                                            tag: 'bg-red-300 text-gray-900 text-sm rounded-lg inline-block mb-[5px] mr-[5px] p-2.5',
+                                            tags: 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5',
+                                            remove: 'w-[20px] text-[18px]',
+                                            suggestions: 'absolute bg-red-300 text-gray-900 text-sm rounded-lg block p-2.5'
+                                        }}
+                                        id='tags'
+                                        name='tags'
+                                        tags={tags}
+                                        suggestions={suggestions}
+                                        delimiters={delimiters}
+                                        handleDelete={handleTagDelete}
+                                        handleAddition={handleTagAddition}
+                                        handleDrag={handleTagDrag}
+                                        handleTagClick={handleTagClick}
+                                        inputFieldPosition="bottom"
+                                    />
+                                </div>
+
+                                <div className='col-span-2'>
                                     <label htmlFor="category" className="block mb-2 text-sm font-medium text-gray-900">Type</label>
                                     <select
                                         id="category"
@@ -169,6 +237,7 @@ function CreateArtwork() {
                                         {artworkTypesList.length > 0 && renderListOfArtworkType}
                                     </select>
                                 </div>
+
                                 <div className="sm:col-span-2">
                                     <div className='flex justify-between items-center'>
                                         <label htmlFor="desc" className="block mb-2 text-sm font-medium text-gray-900">Description</label>
@@ -188,6 +257,7 @@ function CreateArtwork() {
 
                                     </textarea>
                                 </div>
+
                             </div>
                             <div className="mb-4">
                                 <div className='flex justify-between items-center'>
@@ -221,7 +291,12 @@ function CreateArtwork() {
                                             onBlur={formik.handleBlur}
                                         />
                                         {formik.values["ImageUploadRequest"] ? (
-                                            <PreviewFile file={formik.values["ImageUploadRequest"]} height={`${document.querySelector('.uploadImage').offsetHeight}px`} width={`${document.querySelector('.uploadImage').offsetWidth}px`} />
+                                            <PreviewFile file={formik.values["ImageUploadRequest"]}
+                                                height={`${document.querySelector('.uploadImage').offsetHeight}px`}
+                                                width={`${document.querySelector('.uploadImage').offsetWidth}px`}
+                                                className={'preview object-contain'}
+                                                displayPosition={'absolute'}
+                                            />
                                         ) : null}
                                     </label>
                                 </div>

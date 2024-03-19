@@ -1,22 +1,22 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
-import { ArtworkApi } from '../api/Api';
-import { useFormik, ErrorMessage } from "formik";
-import * as Yup from "yup";
+import { ArtworkApi, ReservationApi} from '../api/Api';
 import '../dist/output.css';
+import '../css/Artwork/detail.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { setAccessToken } from '../store/authActions';
-import PreviewFile from '../components/PreviewFile';
 import { Footer } from '../components/footer/Footer';
 import { Header } from '../components/header/Header';
 
 function ArtworkDetail() {
+    const navigate = useNavigate();
     const artworkTypes = useSelector((state) => state.artworkType.artworkTypes)
-    const creatorList = useSelector((state) => state.currentUser.creatorList)
+    const accessToken = useSelector((state) => state.auth.accessToken);
+    const currentUser = useSelector((state) => state.currentUser.user);
 
     const [searchParams, setSearchParams] = useSearchParams();
-    const [id, setId] = useState(0)
-    const [artwork, setArtwork] = useState(null)
+    const [id, setId] = useState(0);
+    const [artwork, setArtwork] = useState(null);
+    const [message, setMessage] = useState("");
 
     useEffect(() => {
         window.scrollTo(0, 0)
@@ -26,8 +26,25 @@ function ArtworkDetail() {
             setArtwork(res.data)
             setId(searchParams.get("id"))
         }).catch(e => console.log(e))
-
     }, [])
+
+    const handleBuy = () => {
+        if (accessToken === null) {
+            navigate('/Login');
+            return;
+        };
+        
+        const data = {
+            userId: currentUser.userId,
+            artworkId: id
+        };
+        ReservationApi.MakeReservation(accessToken, data).then(res => {
+            if (res.status === 200) {
+                console.log(res.status);
+                setMessage("Successfully reserved this artwork!");
+            };
+        }).catch(e => console.log(e))
+    }
 
     return (
         <>
@@ -36,33 +53,50 @@ function ArtworkDetail() {
                 {
                     artwork ? (
                         <>
-                            <div className='flex mx-10 rounded-lg bg-white'>
-                                <div className='w-1/4 h-1/2 px-3 py-4'>
-                                    <img src={artwork.imagePath} alt={artwork.name} className='w-full h-auto object-cover rounded-lg max-h-full' />
-                                </div>
-                                <div className='w-3/4 px-3 py-4 flex flex-col justify-between'>
-                                    <div className='grid grid-cols-6'>
-                                        <div className=''>Name</div>
-                                        <div className='col-span-5'>{artwork.name}</div>
-                                    </div>
-                                    <div className='grid grid-cols-6'>
-                                        <div className=''>Description</div>
-                                        <div className='col-span-5'>{artwork.description}</div>
-                                    </div>
-                                    <div className='grid grid-cols-6'>
-                                        <div className=''>Type</div>
-                                        <div className='col-span-5'>{artworkTypes.filter(type => type.id === artwork.typeId)[0].name}</div>
-                                    </div>
-                                    <div className='grid grid-cols-6'>
-                                        <div className='col-span-1 col'>Price</div>
-                                        <div className='col-span-5'>{artwork.price}</div>
+                            <div className='flex justify-center'>
+                                <div className='w-[90%]'>
+                                    <button className='mb-[15px]'>
+                                        <Link to={'/gallery'} className='mb-[15px]'>Back to gallery</Link>
+                                    </button>
+                                    <p className='artwork-detail-title text-black text-[56px] mb-[10px]'>Artwork Detail Information</p>
+                                    <div className='flex mb-[10px]'>
+                                        <div className='w-[5%]'>
+                                            {/* TODO creator avatar */}
+                                        </div>
+                                        <div className='w-[95%]'>
+                                            <p className='artwork-name text-stone-500 text-[20px]'>{artwork.name}</p>
+                                            <p>{artwork.creator.fullName}</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <div>
-                                Made by {creatorList.filter(creator => creator.id === artwork.userId)[0].fullName}
+                            <div className='flex justify-center'>
+                                <div className='bg-[#FEFEFE] artwork_card flex-shrink-0 w-[40%] h-fit'>
+                                    <div className='flex justify-center '>
+                                        <img src={artwork.imagePath} className='mt-[10px] mb-[10px] w-[90%] object-cover' alt={artwork.name} />
+                                    </div>
+                                </div>
+                                <div className='w-[5%]'>
+                                </div>
+                                <div className='w-[45%]'>
+                                    <p className='mb-[5px] text-red-400 text-opacity-70 text-[20px] font-bold'>Description:</p>
+                                    <p className='mb-[15px]'>{artwork.description}</p>
+                                    <p className='mb-[15px]'>
+                                        <span className='text-red-400 text-opacity-70 text-[20px] font-bold'>Artwork type: </span>
+                                        {artworkTypes.filter(type => type.id === artwork.typeId)[0].name}
+                                    </p>
+                                    <p className='mb-[20px]'>
+                                        <span className='text-red-400 text-opacity-70 text-[20px] font-bold'>Posted: </span>
+                                        {artwork.createdDate.substring(0, 10)}
+                                    </p>
+                                    <p className='mb-[20px]'>{message}</p>
+                                    <button className='w-[95%] h-[80px] bg-gradient-to-r from-red-300 to-amber-200 rounded-3xl' onClick={handleBuy}>
+                                        <p className='text-lime-50 text-3xl'>
+                                            {"VND " + artwork.price.toString()}
+                                        </p>
+                                    </button>
+                                </div>
                             </div>
-                            <button>follow</button>
                         </>
                     )
                         :

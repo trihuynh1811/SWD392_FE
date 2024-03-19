@@ -9,8 +9,10 @@ import ManageArtwork from '../pages/ManageArtwork';
 import EditArtwork from '../pages/EditArtwork';
 import Gallery from '../pages/Gallery';
 import ArtworkDetail from "../pages/ArtworkDetail";
+import Profile from "../pages/Profile";
 import { Pricing } from '../pages/Pricing';
 import { AboutUs } from "../pages/AboutUs";
+import { SubscriptionCheckout } from "../pages/SubscriptionCheckout";
 
 export const router = createBrowserRouter([
     {
@@ -52,5 +54,13 @@ export const router = createBrowserRouter([
     {
         path: "/about-us",
         element: <AboutUs />
+    },
+    {
+        path: "/checkout",
+        element: <SubscriptionCheckout></SubscriptionCheckout>
+    },
+    {
+        path: "/profile",
+        element: <Profile />
     }
 ]);

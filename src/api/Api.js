@@ -24,7 +24,21 @@ export const UserApi = {
     },
 
     GetAllCreator: () => {
-        return api.get('get-creators')
+        return api.get('User/get-creators')
+    },
+
+    ViewAccountDetail: (id) => {
+        return api.get(`User/view-account-detail/${id}`)
+    },
+
+    UpdateAccountDetail: (token, data, id) => {
+        return api.put(`User/update-account/${id}`, data, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+                crossDomain: true,
+                'Content-Type': 'multipart/form-data',
+            }
+        })
     }
 }
 
@@ -41,6 +55,10 @@ export const ArtworkApi = {
 
     GetAllArtwork: () => {
         return api.get('Artwork/get-all-artworks')
+    },
+
+    GetAllArtworkByType: (typeId) => {
+        return api.get(`Artwork/get-all-artworks/type/${typeId}`)
     },
 
     GetAllArtworkByUserId: (id) => {
@@ -64,7 +82,45 @@ export const ArtworkApi = {
 
     GetAllArtworkType: () => {
         return api.get('ArtworkType/get-all-artwork-types')
+    },
+    GetAllArtworkByName: (artworkName) => {
+        return api.get(`Artwork/search-by-name/${artworkName}`)
     }
 
+}
 
+export const SubscriptionApi = {
+    BuySubscription: (token, data) => {
+        return api.post('SubPayment/buy-new-subscription', data, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+                crossDomain: true,
+                'Content-Type': 'application/json'
+            }
+        })
+    }
+}
+
+export const ReservationApi = {
+    MakeReservation: (token, data) => {
+        return api.post('Reservation/make-reservation', data, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+                crossDomain: true,
+                'Content-Type': 'application/json'
+            }
+        })
+    }
+}
+
+export const TagApi = {
+    GetAllTags: () => {
+        return api.get('Tag/get-all-tags')
+    }
+}
+
+export const PackageApi = {
+    GetPackage: (id) => {
+        return api.get(`Package/get-package/${id}`)
+    }
 }

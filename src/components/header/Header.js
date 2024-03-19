@@ -1,19 +1,42 @@
 import { Link } from 'react-router-dom';
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { useState } from 'react';
 import line_between from '../../image/Header/line_between.png'
 import '../../css/app.css';
+import './TabChange.js';
+import avatar from '../../image/Header/Avatar.webp'
 
 
 
 
 export const Header = () => {
   const accessToken = useSelector((state) => state.auth.accessToken)
+  const [open, setOpen] = useState(false);
 
   console.log(accessToken)
 
   const displayLoginRegisterButton = accessToken !== null ?
-    (<Link to={"/login"} className="text-blue-800 bg-slate-200 hover:bg-slate-300 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 py-2 focus:outline-none">Logout</Link>) :
+    (
+      <div className='relative'>
+        <img className='h-[60px] cursor-pointer w-[60px] object-cover rounded-full' onClick={() => setOpen(!open)} src={avatar} alt="" />
+        {
+          open && (<div className='bg-[#ffffff] p-4 w-[175px] mt-[10px] shadow-lg absolute  rounded -left-[90px]  right-[60px]' >
+            <ul className='flex flex-col items-center'>
+              <li onClick={() => setOpen(false)} className='p-2 text-[16px] cursor-pointer rounded hover:bg-[#F8939C] hover:bg-opacity-70'>
+                <Link to={"/profile"} className="text-[#3D4449] font-bold rounded-lg text-sm ">Profile</Link>
+              </li>
+              <li onClick={() => setOpen(false)} className='flex-shrink-0 p-2 text-[16px] cursor-pointer rounded hover:bg-[#F8939C] hover:bg-opacity-70'>
+                <Link to={"/manage-artwork"} className="text-[#3D4449] font-bold rounded-lg text-sm ">Manage Artwork</Link>
+              </li>
+              <li className='p-2 text-[16px] cursor-pointer rounded hover:bg-[#f58932] hover:bg-opacity-70'>
+                <Link to={"/login"} className="text-[#3D4449] font-bold rounded-lg text-sm ">Logout</Link>
+              </li>
+            </ul>
+          </div>)
+        }
+      </div>
+    ) :
     (
       <div className='flex flex-nowrap justify-center items-center'>
         <Link to={"/login"} className="text-[#F8939C] flex-shrink-0 focus:ring-4 focus:ring-gray-300 font-medium text-[18px]  mr-[12px] focus:outline-none lg:hover:opacity-80">Log In</Link>
@@ -22,7 +45,7 @@ export const Header = () => {
     )
   const displayManageArtwork = accessToken !== null ? (
     <li>
-      <Link to={"/manage-artwork"} className="block text-[18px] text-[#3D4449]   hover:text-[#F8939C] lg:hover:bg-transparent font-medium lg:border-0 lg:hover:text-primary-700 lg:p-0">Your Artwork</Link>
+      <Link to={"/manage-artwork"} className="tab-item block text-[18px] text-[#3D4449]   hover:text-[#F8939C] lg:hover:bg-transparent font-medium lg:border-0 lg:hover:text-primary-700 lg:p-0">Your Artwork</Link>
     </li>
   ) : (null)
   return (
@@ -41,17 +64,17 @@ export const Header = () => {
               <div className=" flex-shrink-0 lg:order-1" id="mobile-menu-2">
                 <ul className="flex flex-nowrap overflow-auto justify-center items-center mt-4 font-medium gap-[30px] lg:mt-0">
                   <li>
-                    <Link to={"/"} className=" text-[18px] text-[#3D4449]   hover:text-[#F8939C] lg:hover:bg-transparent font-medium lg:border-0 lg:hover:text-primary-700 lg:p-0">Home</Link>
+                    <Link to={"/"} className="tab-item text-[18px] text-[#3D4449] hover:text-[#F8939C] lg:hover:bg-transparent font-medium lg:border-0 lg:hover:text-primary-700 lg:p-0">Home</Link>
                   </li>
                   <li>
-                    <Link to={"/about-us"} className=" text-[#3D4449]  hover:text-[#F8939C]  font-medium text-[18px]">About us</Link>
+                    <Link to={"/about-us"} className="tab-item text-[#3D4449]  hover:text-[#F8939C]  font-medium text-[18px]">About us</Link>
                   </li>
                   <li>
-                    <Link to={"/gallery"} className="text-[18px] text-[#3D4449]  hover:bg-gray-50 lg:hover:bg-transparent font-medium lg:border-0 lg:hover:text-[#F8939C] lg:p-0">Gallery</Link>
+                    <Link to={"/gallery"} className="tab-item text-[18px] text-[#3D4449]  hover:bg-gray-50 lg:hover:bg-transparent font-medium lg:border-0 lg:hover:text-[#F8939C] lg:p-0">Gallery</Link>
                   </li>
                   {displayManageArtwork}
                   <li>
-                    <button className='bg-black px-[8px] py-[11px] rounded-[10px]'>
+                    <button className='bg-black px-[12px] py-[11px] rounded-[10px]'>
                       <Link to={"/pricing"} className="price_btn text-[18px]  hover:bg-gray-50 lg:hover:bg-transparent font-medium lg:border-0 lg:hover:text-[#F8939C] lg:p-0">Get Pro</Link>
                     </button>
 
