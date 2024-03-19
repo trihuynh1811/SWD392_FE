@@ -5,7 +5,7 @@ export const TypeHubItem = (props) => {
     <div className='typehub-item'>
       <div className=''>
         <img className='w-[250px] h-[157px] object-cover' src={props.image} alt="" />
-        <p className=''>{props.type}Type from database</p>
+        <p className=''>{props.type}</p>
       </div>
     </div>
   );

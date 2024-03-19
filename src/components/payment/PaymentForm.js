@@ -21,7 +21,7 @@ export default function PaymentForm() {
             return;
         };
         window.scrollTo(0, 0);
-    }, [accessToken]);
+    }, []);
 
     const genStripeToken = async () => {
         if (!stripe || !elements) {
@@ -29,7 +29,7 @@ export default function PaymentForm() {
             return;
         };
         const cardNumberElement = elements.getElement(CardNumberElement);
-        const {token, error} = await stripe.createToken(cardNumberElement);
+        const { token, error } = await stripe.createToken(cardNumberElement);
         if (!token || error) {
             console.log(error || "token is null");
             throw error;

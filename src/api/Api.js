@@ -64,7 +64,8 @@ export const ArtworkApi = {
 
     GetAllArtworkType: () => {
         return api.get('ArtworkType/get-all-artwork-types')
-    }
+    },
+
 }
 
 export const SubscriptionApi = {
