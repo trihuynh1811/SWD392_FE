@@ -110,7 +110,7 @@ function CreateArtwork() {
         console.log(formData);
         ArtworkApi.CreateArtwork(accessToken, formData).then(res => {
             if (res.status === 200) {
-                alert("new artwork created");
+                alert("New artwork created");
                 navigate('/manage-artwork');
             }
         }).catch(e => console.log(e))

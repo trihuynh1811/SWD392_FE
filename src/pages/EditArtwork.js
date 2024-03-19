@@ -59,8 +59,11 @@ function EditArtwork() {
             setArtwork(res.data)
             setId(searchParams.get("id"))
             formik.values.Name = res.data.name
+            formData.Name = res.data.name
             formik.values.Description = res.data.description
+            formData.Description = res.data.description
             formik.values.Price = res.data.price
+            formData.Price = res.data.price
         }).catch(e => console.log(e))
     }, [])
 
@@ -77,9 +80,14 @@ function EditArtwork() {
 
     const updateArtwork = () => {
         if (Object.entries(formik.errors).length !== 0) {
-            return
+            return;
         }
-        ArtworkApi.UpdateArtworkById(id, formData, accessToken).then(res => alert(`update artwork ${artwork.name} successfully`)).catch(e => console.log(e))
+        ArtworkApi.UpdateArtworkById(id, formData, accessToken).then((res) => {
+            if (res.status === 200) {
+                alert(`Update artwork ${artwork.name} successfully`);
+                navigate('/manage-artwork');
+            }
+        }).catch(e => console.log(e))
     }
 
     const renderListOfArtworkType = artworkTypesList.map((artworkType, index) => (
@@ -93,7 +101,7 @@ function EditArtwork() {
                 <div className="relative p-4 w-full h-full">
                     <div className="relative p-4 bg-white rounded-lg shadow">
                         <div className="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 dark:border-gray-600">
-                            <h3 className="text-lg font-semibold text-gray-900">New Artwork</h3>
+                            <h3 className="text-lg font-semibold text-gray-900">Edit Artwork</h3>
                         </div>
                         <form action="#">
                             <div className="grid gap-4 mb-4 sm:grid-cols-2">
@@ -166,25 +174,6 @@ function EditArtwork() {
                                     >
 
                                     </textarea>
-                                </div>
-                            </div>
-                            <div className="mb-4">
-                                <div className='flex justify-between items-center'>
-                                    <span className="block mb-2 text-sm font-medium text-gray-900">Product Images</span>
-                                </div>
-                                <div className="uploadImage flex justify-center items-center w-full">
-
-                                    <label htmlFor="file" className="flex flex-col justify-center items-center w-full h-64 bg-gray-50 rounded-lg border-2 border-gray-300 border-dashed cursor-pointer">
-                                        <div className="flex flex-col justify-center items-center pt-5 pb-6">
-                                            <svg aria-hidden="true" className="mb-3 w-10 h-10 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
-                                            </svg>
-                                            <p className="mb-2 text-sm text-gray-500 dark:text-gray-400">
-                                                <span className="font-semibold">Click to upload</span>
-                                            </p>
-                                            <p className="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG, WEBP, JPEG, GIF</p>
-                                        </div>
-                                    </label>
                                 </div>
                             </div>
                             <div className="items-center space-y-4 sm:flex sm:space-y-0 sm:space-x-4">
