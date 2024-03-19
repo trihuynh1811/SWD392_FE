@@ -73,7 +73,7 @@ export const HeaderOutSide = () => {
                   </li>
                   {displayManageArtwork}
                   <li>
-                    <button className='bg-black px-[8px] py-[11px] rounded-[10px]'>
+                    <button className='bg-black px-[12px] py-[11px] rounded-[10px]'>
                       <Link to={"/pricing"} className="price_btn text-[18px]  hover:bg-gray-50 lg:hover:bg-transparent font-medium lg:border-0 lg:hover:text-[#F8939C] lg:p-0">Get Pro</Link>
                     </button>
                   </li>
