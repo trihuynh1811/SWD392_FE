@@ -10,6 +10,7 @@ import PreviewFile from '../components/PreviewFile';
 import { Footer } from '../components/footer/Footer';
 import { Header } from '../components/header/Header';
 import { HeaderOutSide } from '../components/header/Header_outside';
+import left_icon from '../image/Icon/left_icon.png'
 
 function EditArtwork() {
     const accessToken = useSelector((state) => state.auth.accessToken);
@@ -98,9 +99,19 @@ function EditArtwork() {
     return (
         <>
             <HeaderOutSide></HeaderOutSide>
-            <div id="createProductModal" tabIndex={-1} aria-hidden="true" className="overflow-y-auto overflow-x-hidden flex z-50 justify-center items-center w-full h-full bg-[#F4F1E4]" style={{ minHeight: "100vh" }}>
-                <div className="relative p-4 w-full h-full">
-                    <div className="relative p-4 bg-transparent rounded-lg shadow">
+            <div id="createProductModal" tabIndex={-1} aria-hidden="true" className="overflow-y-auto overflow-x-hidden flex z-50 justify-center items-center w-full h-full bg-[#F4F1E4]" >
+
+                <div className="relative p-4 w-full h-full mt-[30px]">
+                    <div className='flex gap-[5px] items-center pl-[15px]'>
+                        <Link>
+                            <img className='w-[35px]' src={left_icon} alt="" />
+                        </Link>
+
+                        <Link to={"/manage-artwork"}
+                            className='text-[#F8939C] text-[18px] font-bold underline'>Your Artwork</Link>
+                    </div>
+
+                    <div className="relative p-4 bg-transparent rounded-lg ">
                         <div className="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 dark:border-gray-600">
                             <h3 className="text-[48px] font-bold text-gray-900">Edit Artwork</h3>
                         </div>
@@ -108,7 +119,7 @@ function EditArtwork() {
                             <div className="grid gap-4 mb-4 sm:grid-cols-2">
                                 <div>
                                     <div className='flex justify-between items-center'>
-                                        <label htmlFor="name" className="block mb-2 text-sm font-medium text-gray-900">Name</label>
+                                        <label htmlFor="name" className="block mb-2 text-[16px] font-bold text-[#A67E4E]">Name</label>
                                         {formik.touched.Name && formik.errors.Name && (
                                             <div className='flex-1 flex items-center ms-3 mb-2 text-red-500 italic text-sm'>{formik.errors.Name}</div>
                                         )}
@@ -117,7 +128,7 @@ function EditArtwork() {
                                         type="text"
                                         name="Name"
                                         id="name"
-                                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                                        className="bg-[#EBECF2] border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                                         onChange={e => { formik.handleChange(e); handleInput(e) }}
                                         onBlur={formik.handleBlur}
                                         value={formik.values.Name}
@@ -128,7 +139,7 @@ function EditArtwork() {
 
                                 <div>
                                     <div className='flex justify-between items-center'>
-                                        <label htmlFor="price" className="block mb-2 text-sm font-medium text-gray-900">Price</label>
+                                        <label htmlFor="price" className="block mb-2 text-[16px] font-bold text-[#A67E4E]">Price</label>
                                         {formik.touched.Price && formik.errors.Price && (
                                             <div className='flex-1 flex items-center ms-3 mb-2 text-red-500 italic text-sm'>{formik.errors.Price}</div>
                                         )}
@@ -138,7 +149,7 @@ function EditArtwork() {
                                         name="Price"
                                         id="price"
                                         min={10000}
-                                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                                        className="bg-[#EBECF2] border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                                         onChange={e => { formik.handleChange(e); handleInput(e) }}
                                         onBlur={formik.handleBlur}
                                         value={formik.values.Price}
@@ -147,11 +158,11 @@ function EditArtwork() {
                                 </div>
 
                                 <div className='col-span-2'>
-                                    <label htmlFor="category" className="block mb-2 text-sm font-medium text-gray-900">Type</label>
+                                    <label htmlFor="category" className="block mb-2 text-[16px] font-bold text-[#A67E4E]">Type</label>
                                     <select
                                         id="category"
                                         name='TypeId'
-                                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
+                                        className="bg-[#EBECF2] border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
                                         onChange={e => handleInput(e)}
                                     >
                                         {artworkTypesList.length > 0 && renderListOfArtworkType}
@@ -159,7 +170,7 @@ function EditArtwork() {
                                 </div>
                                 <div className="sm:col-span-2">
                                     <div className='flex justify-between items-center'>
-                                        <label htmlFor="desc" className="block mb-2 text-sm font-medium text-gray-900">Description</label>
+                                        <label htmlFor="desc" className="block mb-2 text-[16px] font-bold text-[#A67E4E]">Description</label>
                                         {formik.touched.Description && formik.errors.Description && (
                                             <div className='flex-1 flex items-center ms-3 mb-2 text-red-500 italic text-sm'>{formik.errors.Description}</div>
                                         )}
@@ -168,7 +179,7 @@ function EditArtwork() {
                                         id="desc"
                                         name='Description'
                                         rows="4"
-                                        className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500"
+                                        className="block p-2.5 w-full text-sm text-gray-900 bg-[#EBECF2] rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500"
                                         onChange={e => { formik.handleChange(e); handleInput(e) }}
                                         onBlur={formik.handleBlur}
                                         value={formik.values.Description}
@@ -178,8 +189,8 @@ function EditArtwork() {
                                 </div>
                             </div>
                             <div className="items-center space-y-4 sm:flex sm:space-y-0 sm:space-x-4">
-                                <button type="button" className="w-full justify-center text-black inline-flex items-center bg-white hover:bg-blue-600 focus:ring-4 focus:outline-none focus:ring-primary-300 rounded-lg border border-blue-600 text-sm font-medium px-5 py-2.5 hover:text-white focus:z-10" onClick={updateArtwork}>Update artwork</button>
-                                <button data-modal-toggle="createProductModal" type="button" className="w-full justify-center text-black inline-flex items-center bg-white hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-primary-300 rounded-lg border border-red-600 text-sm font-medium px-5 py-2.5 hover:text-white focus:z-10" onClick={discard}>
+                                <button type="button" className="w-full justify-center text-black inline-flex items-center bg-[#FFD586]   rounded-lg  text-[16px] hover:bg-black transition-all font-medium px-5 py-2.5 hover:text-white focus:z-10" onClick={updateArtwork}><Link to={"/manage-artwork"}>Update artwork</Link> </button>
+                                <button data-modal-toggle="createProductModal" type="button" className="w-full justify-center text-black inline-flex items-center bg-transparent hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-primary-300 rounded-lg border border-red-600 text-[16px] font-medium px-5 py-[9px] transition-all hover:text-white focus:z-10" onClick={discard}>
                                     <svg className="mr-1 -ml-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                         <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
                                     </svg>
