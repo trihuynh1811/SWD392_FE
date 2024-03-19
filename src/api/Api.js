@@ -57,6 +57,10 @@ export const ArtworkApi = {
         return api.get('Artwork/get-all-artworks')
     },
 
+    GetAllArtworkByType: (typeId) => {
+        return api.get(`Artwork/get-all-artworks/type/${typeId}`)
+    },
+
     GetAllArtworkByUserId: (id) => {
         return api.get(`Artwork/get-artworks/user/${id}`)
     },
@@ -79,7 +83,9 @@ export const ArtworkApi = {
     GetAllArtworkType: () => {
         return api.get('ArtworkType/get-all-artwork-types')
     },
-
+    GetAllArtworkByName: (artworkName) => {
+        return api.get(`Artwork/search-by-name/${artworkName}`)
+    }
 
 }
 
@@ -110,11 +116,5 @@ export const ReservationApi = {
                 'Content-Type': 'application/json'
             }
         })
-    }
-}
-
-export const TagApi = {
-    GetAllTags: () => {
-        return api.get('Tag/get-all-tags')
     }
 }

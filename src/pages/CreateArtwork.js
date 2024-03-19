@@ -120,7 +120,7 @@ function CreateArtwork() {
 
     // Start tag related section
     const [suggestions, setSuggestions] = useState([]);
-    
+
     const KeyCodes = {
         comma: 188,
         enter: 13
@@ -259,7 +259,7 @@ function CreateArtwork() {
 
                                     </textarea>
                                 </div>
-                                
+
                             </div>
                             <div className="mb-4">
                                 <div className='flex justify-between items-center'>

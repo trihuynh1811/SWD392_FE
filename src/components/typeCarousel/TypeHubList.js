@@ -20,6 +20,7 @@ export const TypeHubList = () => {
             key={index}
             image={item.image}
             type={artworkTypes.filter(type => type.id === item.id)[0].name}
+            typeId={item.id}
           />
         )
       })}

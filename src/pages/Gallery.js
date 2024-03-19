@@ -22,6 +22,8 @@ function Gallery() {
     const creatorList = useSelector((state) => state.currentUser.creatorList)
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const [searchParams, setSearchParams] = useSearchParams();
+    const [artworkName, setArtworkName] = useState("")
 
     useEffect(() => {
         window.scrollTo(0, 0)
@@ -38,9 +40,21 @@ function Gallery() {
             console.log(creatorList)
             console.log(artworkTypes)
         }
-        ArtworkApi.GetAllArtwork().then(res => {
-            setArtworkList(res.data)
-        }).catch(e => console.log(e))
+        if (searchParams.get('type') !== null) {
+            ArtworkApi.GetAllArtworkByType(searchParams.get('type')).then(res => {
+                if (res.data !== 'No artworks found') {
+                    console.log(res.data)
+                    setArtworkList(res.data)
+                }
+
+            }).catch(e => console.log(e))
+        }
+        else {
+            ArtworkApi.GetAllArtwork().then(res => {
+                setArtworkList(res.data)
+            }).catch(e => console.log(e))
+        }
+
     }, [])
 
     const seeArtworkDetail = (id) => {
@@ -84,6 +98,26 @@ function Gallery() {
         </div>)
     })
 
+    const handleInput = (e) => {
+        setArtworkName(e.target.value)
+    }
+
+    const renderSearchResult = () => {
+        if (artworkName === "") {
+            ArtworkApi.GetAllArtwork().then(res => {
+                setArtworkList(res.data)
+            }).catch(e => console.log(e))
+            return
+        }
+        ArtworkApi.GetAllArtworkByName(artworkName).then(res => {
+            if (res.data === 'no artworks found with this name') {
+                setArtworkList([])
+                return
+            }
+            setArtworkList(res.data)
+        }).catch(e => console.error(e))
+    }
+
     // Type handle
     const optionsTypeData = [
         { value: 'Landscapes', content: 'Landscapes' },
@@ -100,21 +134,21 @@ function Gallery() {
             <div className='gallery_container flex items-center gap-[600px] mt-[34px] px-[92px]'>
                 <div className='search_flow flex items-center gap-[40px]'>
                     <div className='search_name relative'>
-                        <input type="search" name='search_name' placeholder='Artwork name...' className='bg-[#E5E4E4] border border-[#3D4449] h-10 pl-[40px] pr-10 rounded-[5px] text-sm focus:outline-none w-[300px]' />
-                        <button className='absolute left-[10px] top-[8px]'>
+                        <input type="search" name='search_name' placeholder='Artwork name...' className='bg-[#E5E4E4] border border-[#3D4449] h-10 pl-[40px] pr-10 rounded-[5px] text-sm focus:outline-none w-[300px]' onChange={e => handleInput(e)} />
+                        <button className='absolute left-[10px] top-[8px]' onClick={renderSearchResult}>
                             <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 29 29" fill="none">
                                 <path d="M27.6251 27.625L21.2915 21.2915M21.2915 21.2915C22.3749 20.2081 23.2343 18.9219 23.8206 17.5064C24.4069 16.0909 24.7087 14.5738 24.7087 13.0417C24.7087 11.5095 24.4069 9.99241 23.8206 8.57691C23.2343 7.16141 22.3749 5.87525 21.2915 4.79187C20.2081 3.70849 18.922 2.84911 17.5065 2.26279C16.091 1.67647 14.5739 1.37469 13.0417 1.37469C11.5096 1.37469 9.99247 1.67647 8.57697 2.26279C7.16147 2.84911 5.87531 3.70849 4.79193 4.79187C2.60395 6.97985 1.37476 9.94739 1.37476 13.0417C1.37476 16.1359 2.60395 19.1035 4.79193 21.2915C6.97991 23.4794 9.94745 24.7086 13.0417 24.7086C16.136 24.7086 19.1035 23.4794 21.2915 21.2915Z" stroke="#3D4449" stroke-linecap="round" stroke-linejoin="round" />
                             </svg>
                         </button>
                     </div>
-                    <div className='search_tag relative'>
+                    {/* <div className='search_tag relative'>
                         <input className='h-10 bg-transparent border border-[#3D4449] rounded-[5px] focus:outline-none pl-[40px]' type="search" placeholder='Tag...' />
                         <button className='absolute left-[10px] top-[8px]'>
                             <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 29 29" fill="none">
                                 <path d="M27.6251 27.625L21.2915 21.2915M21.2915 21.2915C22.3749 20.2081 23.2343 18.9219 23.8206 17.5064C24.4069 16.0909 24.7087 14.5738 24.7087 13.0417C24.7087 11.5095 24.4069 9.99241 23.8206 8.57691C23.2343 7.16141 22.3749 5.87525 21.2915 4.79187C20.2081 3.70849 18.922 2.84911 17.5065 2.26279C16.091 1.67647 14.5739 1.37469 13.0417 1.37469C11.5096 1.37469 9.99247 1.67647 8.57697 2.26279C7.16147 2.84911 5.87531 3.70849 4.79193 4.79187C2.60395 6.97985 1.37476 9.94739 1.37476 13.0417C1.37476 16.1359 2.60395 19.1035 4.79193 21.2915C6.97991 23.4794 9.94745 24.7086 13.0417 24.7086C16.136 24.7086 19.1035 23.4794 21.2915 21.2915Z" stroke="#3D4449" stroke-linecap="round" stroke-linejoin="round" />
                             </svg>
                         </button>
-                    </div>
+                    </div> */}
 
                 </div>
                 {/* filter type */}
@@ -132,7 +166,7 @@ function Gallery() {
             <div style={{ minHeight: '100vh' }}>
                 <div className='flex justify-center mt-[50px] mb-[150px]'>
                     <div className="grid grid-cols-3 gap-x-[80px] gap-y-[80px]">
-                        {artworkList.length > 0 && renderAllArtwork}
+                        {artworkList.length > 0 ? renderAllArtwork : <div>No result found</div>}
                     </div>
                 </div>
             </div>
