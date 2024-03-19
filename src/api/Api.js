@@ -65,6 +65,16 @@ export const ArtworkApi = {
     GetAllArtworkType: () => {
         return api.get('ArtworkType/get-all-artwork-types')
     }
+}
 
-
+export const SubscriptionApi = {
+    BuySubscription: (token, data) => {
+        return api.post('SubPayment/buy-new-subscription', data, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+                crossDomain: true,
+                'Content-Type': 'application/json'
+            }
+        })
+    }
 }
