@@ -18,7 +18,7 @@ function Profile() {
     const [data, setData] = useState({
         Phone: "",
         Address: "",
-        ImagePath: ""
+        ImageUploadRequest: ""
     })
 
     const validFileExtensions = { file: ['jpg', 'gif', 'png', 'jpeg', 'svg', 'webp'] };
@@ -66,7 +66,6 @@ function Profile() {
             setPersonalInfo(res.data)
             formik.values.Phone = res.data.phone
             formik.values.Address = res.data.address
-            formik.values.ImageUploadRequest = res.data.imagePath
             console.log(formik.values.ImageUploadRequest)
         }).catch(e => console.error(e))
     }, [])
@@ -81,7 +80,7 @@ function Profile() {
     const editProfile = () => {
         console.log(formik.values)
         console.log(data)
-        UserApi.UpdateAccountDetail(accessToken, data, currentUser.userId).then(res => {
+        UserApi.UpdateAccountDetail(accessToken, formik.values, currentUser.userId).then(res => {
             if (res.status === 204) {
                 alert("update profile successfully")
             }
@@ -105,7 +104,7 @@ function Profile() {
                                         displayPosition={'w-full h-full'}
                                     />
                                 ) : (
-                                    <img src={avatar} alt='profile' className='w-full h-[90%] object-cover rounded-lg border-2 border-black' />
+                                    <img src={personalInfo.imagePath !== null ? personalInfo.imagePath : avatar} alt='profile' className='w-full h-[90%] object-cover rounded-lg border-2 border-black' />
 
                                 )}
                                 <div className=''>
