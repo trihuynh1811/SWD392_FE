@@ -94,6 +94,9 @@ function CreateArtwork() {
     ))
 
     const submitNewArtwork = async () => {
+        if (Object.entries(formik.errors).length !== 0) {
+            return
+        }
         console.log(formData)
         ArtworkApi.CreateArtwork(accessToken, formData).then(res => {
             if (res.status === 200) {
