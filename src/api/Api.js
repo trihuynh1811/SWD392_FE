@@ -80,6 +80,13 @@ export const ArtworkApi = {
         return api.get('ArtworkType/get-all-artwork-types')
     },
 
+
+}
+
+export const TagApi = {
+    GetAllTags: () => {
+        return api.get('/Tag/get-all-tags');
+    }
 }
 
 export const SubscriptionApi = {

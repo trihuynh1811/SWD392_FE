@@ -80,6 +80,9 @@ function Profile() {
     const editProfile = () => {
         console.log(formik.values)
         console.log(data)
+        if (Object.entries(formik.errors).length !== 0) {
+            return
+        }
         UserApi.UpdateAccountDetail(accessToken, formik.values, currentUser.userId).then(res => {
             if (res.status === 204) {
                 alert("update profile successfully")
