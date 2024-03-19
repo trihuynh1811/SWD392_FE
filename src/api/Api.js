@@ -89,12 +89,6 @@ export const ArtworkApi = {
 
 }
 
-export const TagApi = {
-    GetAllTags: () => {
-        return api.get('/Tag/get-all-tags');
-    }
-}
-
 export const SubscriptionApi = {
     BuySubscription: (token, data) => {
         return api.post('SubPayment/buy-new-subscription', data, {
