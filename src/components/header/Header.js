@@ -24,7 +24,7 @@ export const Header = () => {
           open && (<div className='bg-[#ffffff] p-4 w-[175px] mt-[10px] shadow-lg absolute  rounded -left-[90px]  right-[60px]' >
             <ul className='flex flex-col items-center'>
               <li onClick={() => setOpen(false)} className='p-2 text-[16px] cursor-pointer rounded hover:bg-[#F8939C] hover:bg-opacity-70'>
-                <Link to={"/"} className="text-[#3D4449] font-bold rounded-lg text-sm ">Profile</Link>
+                <Link to={"/profile"} className="text-[#3D4449] font-bold rounded-lg text-sm ">Profile</Link>
               </li>
               <li onClick={() => setOpen(false)} className='flex-shrink-0 p-2 text-[16px] cursor-pointer rounded hover:bg-[#F8939C] hover:bg-opacity-70'>
                 <Link to={"/manage-artwork"} className="text-[#3D4449] font-bold rounded-lg text-sm ">Manage Artwork</Link>
