@@ -27,3 +27,7 @@ body {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
+.profile_title {
+  font-family: "Bubblegum Sans";
+}
