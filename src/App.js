@@ -12,6 +12,7 @@ import { Intro } from './components/homepage/Intro';
 import { Benefit } from './components/homepage/Benefits';
 import { Discord } from './components/homepage/Discord';
 import { ArtworksView } from './components/homepage/ArtworksView';
+import TypeHubList from './components/typeCarousel/TypeHubList';
 import ManageArtwork from './pages/ManageArtwork';
 
 
@@ -23,6 +24,7 @@ function App() {
       <Header></Header>
       <Intro></Intro>
       <Benefit></Benefit>
+      <TypeHubList></TypeHubList>
       <Discord></Discord>
       <ArtworksView></ArtworksView>
 
