@@ -82,3 +82,15 @@ export const SubscriptionApi = {
         })
     }
 }
+
+export const ReservationApi = {
+    MakeReservation: (token, data) => {
+        return api.post('Reservation/make-reservation', data, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+                crossDomain: true,
+                'Content-Type': 'application/json'
+            }
+        })
+    }
+}
