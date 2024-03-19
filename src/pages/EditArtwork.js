@@ -9,6 +9,7 @@ import { setAccessToken } from '../store/authActions';
 import PreviewFile from '../components/PreviewFile';
 import { Footer } from '../components/footer/Footer';
 import { Header } from '../components/header/Header';
+import { HeaderOutSide } from '../components/header/Header_outside';
 
 function EditArtwork() {
     const accessToken = useSelector((state) => state.auth.accessToken);
@@ -96,12 +97,12 @@ function EditArtwork() {
 
     return (
         <>
-            <Header></Header>
+            <HeaderOutSide></HeaderOutSide>
             <div id="createProductModal" tabIndex={-1} aria-hidden="true" className="overflow-y-auto overflow-x-hidden flex z-50 justify-center items-center w-full h-full bg-[#F4F1E4]" style={{ minHeight: "100vh" }}>
                 <div className="relative p-4 w-full h-full">
-                    <div className="relative p-4 bg-white rounded-lg shadow">
+                    <div className="relative p-4 bg-transparent rounded-lg shadow">
                         <div className="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 dark:border-gray-600">
-                            <h3 className="text-lg font-semibold text-gray-900">Edit Artwork</h3>
+                            <h3 className="text-[48px] font-bold text-gray-900">Edit Artwork</h3>
                         </div>
                         <form action="#">
                             <div className="grid gap-4 mb-4 sm:grid-cols-2">

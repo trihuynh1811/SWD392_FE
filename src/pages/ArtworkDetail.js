@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
-import { ArtworkApi, ReservationApi} from '../api/Api';
+import { ArtworkApi, ReservationApi } from '../api/Api';
 import '../dist/output.css';
 import '../css/Artwork/detail.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { Footer } from '../components/footer/Footer';
 import { Header } from '../components/header/Header';
+import { HeaderOutSide } from '../components/header/Header_outside';
+import wrong_img from '../image/ErrorPage/Went_wrong.png'
 
 function ArtworkDetail() {
     const navigate = useNavigate();
@@ -33,7 +35,7 @@ function ArtworkDetail() {
             navigate('/Login');
             return;
         };
-        
+
         const data = {
             userId: currentUser.userId,
             artworkId: id
@@ -45,10 +47,10 @@ function ArtworkDetail() {
             };
         }).catch(e => console.log(e))
     }
-
+    
     return (
         <>
-            <Header></Header>
+            <HeaderOutSide></HeaderOutSide>
             <div className='bg-[#F4F1E4] py-12 flex flex-col' style={{ minHeight: '100vh' }}>
                 {
                     artwork ? (
@@ -56,7 +58,7 @@ function ArtworkDetail() {
                             <div className='flex justify-center'>
                                 <div className='w-[90%]'>
                                     <button className='mb-[15px]'>
-                                        <Link to={'/gallery'} className='mb-[15px]'>Back to gallery</Link>
+                                        <Link to={'/gallery'} className='mb-[15px] opacity-50 underline'>Back to gallery</Link>
                                     </button>
                                     <p className='artwork-detail-title text-black text-[56px] mb-[10px]'>Artwork Detail Information</p>
                                     <div className='flex mb-[10px]'>
@@ -64,8 +66,8 @@ function ArtworkDetail() {
                                             {/* TODO creator avatar */}
                                         </div>
                                         <div className='w-[95%]'>
-                                            <p className='artwork-name text-stone-500 text-[20px]'>{artwork.name}</p>
-                                            <p>{artwork.creator.fullName}</p>
+                                            <p className='artwork-name text-stone-500 text-[28px]'>{artwork.name}</p>
+                                            <p className='text-[#3D4449] font-normal'>{artwork.creator.fullName}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -80,19 +82,19 @@ function ArtworkDetail() {
                                 </div>
                                 <div className='w-[45%]'>
                                     <p className='mb-[5px] text-red-400 text-opacity-70 text-[20px] font-bold'>Description:</p>
-                                    <p className='mb-[15px]'>{artwork.description}</p>
-                                    <p className='mb-[15px]'>
+                                    <p className='mb-[15px] text-[#3D4449]'>{artwork.description}</p>
+                                    <p className='mb-[15px] text-[#3D4449]'>
                                         <span className='text-red-400 text-opacity-70 text-[20px] font-bold'>Artwork type: </span>
                                         {artworkTypes.filter(type => type.id === artwork.typeId)[0].name}
                                     </p>
-                                    <p className='mb-[20px]'>
+                                    <p className='mb-[20px] text-[#3D4449]'>
                                         <span className='text-red-400 text-opacity-70 text-[20px] font-bold'>Posted: </span>
                                         {artwork.createdDate.substring(0, 10)}
                                     </p>
-                                    <p className='mb-[20px]'>{message}</p>
-                                    <button className='w-[95%] h-[80px] bg-gradient-to-r from-red-300 to-amber-200 rounded-3xl' onClick={handleBuy}>
-                                        <p className='text-lime-50 text-3xl'>
-                                            {"VND " + artwork.price.toString()}
+                                    <p className='mb-[20px] text-[#007940] text-[20px] font-bold'>{message}</p>
+                                    <button className='w-[95%] h-[80px] flex justify-center items-center bg-gradient-to-r from-red-300 to-amber-200 rounded-3xl' onClick={handleBuy}>
+                                        <p className='text-lime-50 text-[40px] artwork_price'>
+                                            {"VND " +  artwork.price.toString() }
                                         </p>
                                     </button>
                                 </div>
@@ -100,7 +102,9 @@ function ArtworkDetail() {
                         </>
                     )
                         :
-                        <p>Loading...</p>
+                        <div className='flex justify-center'>
+                            <img src={wrong_img} alt="" />
+                        </div>
                 }
             </div>
             <Footer></Footer>
