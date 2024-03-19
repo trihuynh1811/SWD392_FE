@@ -2,14 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import left_icon from '../image/Icon/left_icon.png';
 import logo from '../image/Logo/Asp_Logo.png';
-import card_icon from '../image/Icon/card_icon.png';
-import cvc_icon from '../image/Icon/cvc_icon.png';
-import { useSelector } from 'react-redux';
+import StripeContainer from '../components/payment/StripeContainer';
 
 export const SubscriptionCheckout = (props) => {
-  const currentUser = useSelector((state) => state.currentUser.user)
-  const email = currentUser['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress']
-
   return (
     <div className='checkout_container flex h-screen'>
       <div className='w-[50%] max-h-screen bg-[rgb(244,241,228)]'>
@@ -59,36 +54,7 @@ export const SubscriptionCheckout = (props) => {
         </div>
       </div>
       <div className='w-[50%] max-h-screen flex flex-col justify-center gap-[60px] items-center'>
-        <div className='flex items-center gap-[93px] bg-[#E6E9EC] w-[420px] h-[43px] rounded-[5px] pl-[24px]'>
-          <label className='text-[16px] font-bold' htmlFor="">Email</label>
-          <span className='text-[16px] font-light'>{email}</span>
-        </div>
-        {/*  */}
-        <form action="">
-          <div>
-            <p className='mb-[5px]'>Card information</p>
-            <div className=' relative'>
-              <input className='w-[410px] focus:outline-[#3D4449] py-[10px] pl-[17px] rounded-[10px] border border-[#9CA3A8] border-opacity-60' type="text" placeholder='1234 1234 1234 1234' />
-              <img src={card_icon} className='w-[100px] left-[300px] bottom-[12px] absolute' alt="" />
-            </div>
-          </div>
-          {/*  */}
-          <div className='flex gap-[18px] mt-[20px]'>
-            <input className='py-[10px] focus:outline-[#3D4449] w-[170px] pl-[17px] rounded-[10px] border border-[#9CA3A8] border-opacity-60' type="text" placeholder='MM/YY' />
-            <div className='relative'>
-              <input className='py-[10px] w-[220px] pl-[17px] rounded-[10px] focus:outline-[#3D4449] border border-[#9CA3A8] border-opacity-60' type="text" placeholder='CVC' />
-              <img src={cvc_icon} className='absolute left-[178px] bottom-[5px]' alt="" />
-            </div>
-          </div>
-          {/*  */}
-          <div className='mt-[30px]'>
-            <p className='mb-[5px]' >Card holder's name</p>
-            <input className='w-[410px] focus:outline-[#3D4449] py-[10px] pl-[17px] rounded-[10px] border border-[#9CA3A8] border-opacity-60' type="text" name="" id="" placeholder='Fullname...' />
-          </div>
-          <h3 className='w-[400px] text-[16px] text-[#A67E4E] tracking-[-0.2px] mt-[10px]'>Make sure your information is real. Please check all fields carefully</h3>
-          <input type="submit" className='w-[410px] text-white hover:opacity-80 bg-[#000] mt-[40px] cursor-pointer py-[10px] pl-[17px] rounded-[10px] border border-[#9CA3A8] border-opacity-60' value={"Register"} />
-          <p className='text-[13px] mt-[8px] leading-[17px] text-[#9CA3A8] w-[415px] ml-[5px]'>By confirming your subscription, you authorize ProAs to charge future payments based on their terms. You can always unsubscribe.</p>
-        </form>
+        <StripeContainer />
       </div>
     </div>
   );
