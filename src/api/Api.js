@@ -24,7 +24,11 @@ export const UserApi = {
     },
 
     GetAllCreator: () => {
-        return api.get('get-creators')
+        return api.get('User/get-creators')
+    },
+
+    ViewAccountDetail: (id) => {
+        return api.get(`User/view-account-detail/${id}`)
     }
 }
 
