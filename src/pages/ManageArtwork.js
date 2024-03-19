@@ -68,7 +68,7 @@ function ManageArtwork() {
         }
     }
 
-    const renderListOfArtwork = currentArtworkList.map((artwork, index) => (
+    const renderListOfArtwork = Array.isArray(currentArtworkList) && currentArtworkList.map((artwork, index) => (
         <div key={index} className="bg-slate-100 rounded-lg flex mx-3 my-3">
             <div className="w-1/5 rounded-lg px-3 py-3 flex justify-center items-center">
                 <img src={artwork.imagePath} className="w-full h-44 object-cover max-w-full max-h-44 rounded-lg" alt=''/>
