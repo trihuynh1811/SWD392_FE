@@ -76,6 +76,9 @@ function EditArtwork() {
     }
 
     const updateArtwork = () => {
+        if (Object.entries(formik.errors).length !== 0) {
+            return
+        }
         ArtworkApi.UpdateArtworkById(id, formData, accessToken).then(res => alert(`update artwork ${artwork.name} successfully`)).catch(e => console.log(e))
     }
 

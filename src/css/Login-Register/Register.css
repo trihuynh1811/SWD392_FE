@@ -1,0 +1,11 @@
+*{
+  padding:0;
+  margin:0;
+  box-sizing: border-box;
+}
+.register_title{
+  font-family: "Bubblegum Sans" !important;
+}
+.register_btn{
+  transition: 500ms;
+}

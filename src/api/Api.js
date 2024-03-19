@@ -1,12 +1,12 @@
 import Axios from "axios";
 
 const api = Axios.create({
-    baseURL: "https://localhost:44394/"
+    baseURL: "https://localhost:44394/api/"
 })
 
 export const UserApi = {
     Login: (data) => {
-        return api.post('login', data, {
+        return api.post('User/login', data, {
             headers: {
                 crossDomain: true,
                 'Content-Type': 'application/json'
@@ -15,7 +15,7 @@ export const UserApi = {
     },
 
     Register: (data) => {
-        return api.post('register', data, {
+        return api.post('User/register', data, {
             headers: {
                 crossDomain: true,
                 'Content-Type': 'application/json'
@@ -30,7 +30,7 @@ export const UserApi = {
 
 export const ArtworkApi = {
     CreateArtwork: (token, data) => {
-        return api.post('add-artwork', data, {
+        return api.post('Artwork/add-artwork', data, {
             headers: {
                 Authorization: `Bearer ${token}`,
                 crossDomain: true,
@@ -40,19 +40,19 @@ export const ArtworkApi = {
     },
 
     GetAllArtwork: () => {
-        return api.get('get-all-artworks')
+        return api.get('Artwork/get-all-artworks')
     },
 
     GetAllArtworkByUserId: (id) => {
-        return api.get(`get-artworks/user/${id}`)
+        return api.get(`Artwork/get-artworks/user/${id}`)
     },
 
     GetArtworkById: (id) => {
-        return api.get(`get-artwork/${id}`)
+        return api.get(`Artwork/get-artwork/${id}`)
     },
 
     UpdateArtworkById: (id, data, token) => {
-        return api.put(`update-artwork/${id}`, data, {
+        return api.put(`Artwork/update-artwork/${id}`, data, {
             headers: {
                 Authorization: `Bearer ${token}`,
                 crossDomain: true,
@@ -63,7 +63,7 @@ export const ArtworkApi = {
     },
 
     GetAllArtworkType: () => {
-        return api.get('get-all-artwork-types')
+        return api.get('ArtworkType/get-all-artwork-types')
     }
 
 
