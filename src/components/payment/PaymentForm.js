@@ -1,7 +1,7 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { CardCvcElement, CardExpiryElement, CardNumberElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import card_icon from '../../image/Icon/card_icon.png';
-import { SubscriptionApi } from '../../api/Api';
+import { PackageApi, SubscriptionApi } from '../../api/Api';
 import { useSelector } from 'react-redux';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 
@@ -15,12 +15,18 @@ export default function PaymentForm() {
     const stripe = useStripe();
     const elements = useElements();
 
+    const [packagePlan, setPackagePlan] = useState(null); 
+
     useEffect(() => {
         if (accessToken === null) {
             navigate('/Login');
             return;
         };
         window.scrollTo(0, 0);
+        PackageApi.GetPackage(searchParams.get("packageId")).then((res) => {
+            console.log(res.data);
+            setPackagePlan(res.data);
+        });
     }, []);
 
     const genStripeToken = async () => {
@@ -42,9 +48,9 @@ export default function PaymentForm() {
         const token = await genStripeToken();
         let data = {
             userId: parseInt(currentUser.userId),
-            packageId: parseInt(searchParams.get("packageId")),
+            packageId: parseInt(packagePlan.id),
             stripeToken: token.id,
-            isYearly: (searchParams.get("isYearly") === "true")
+            isYearly: packagePlan.yearlyStripePlanId !== null
         };
         SubscriptionApi.BuySubscription(accessToken, data).then(res => {
             if (res.status === 200) {

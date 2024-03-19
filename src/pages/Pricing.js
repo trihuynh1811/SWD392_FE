@@ -49,11 +49,11 @@ export const Pricing = () => {
                     <h1 className='text-[40px] font-bold mt-[36px] ml-[25px]'>Monthly</h1>
                     <p className='text-[#888] text-[16px] ml-[25px]'>For individuals & creators</p>
                     <div className='text-center text-[56px] text-[#3D4449] mt-[48px]'>
-                        $8
+                        199<span className='text-[42px]'>,000₫</span>
                     </div>
                     <div className='flex justify-center'>
                         <button className='  mt-[48px]'>
-                            <Link to={"/checkout?packageId=1&isYearly=false"} className='upgrade_btn py-[12px] px-[106px] text-[16px] text-[#3D4449] font-bold bg-[#FFD586] rounded-[12px] lg:hover:bg-[black] lg:hover:text-[#fefefe]'>Upgrade</Link>
+                            <Link to={"/checkout?packageId=1"} className='upgrade_btn py-[12px] px-[106px] text-[16px] text-[#3D4449] font-bold bg-[#FFD586] rounded-[12px] lg:hover:bg-[black] lg:hover:text-[#fefefe]'>Upgrade</Link>
                         </button>
                     </div>
                     {/* rights */}
@@ -83,11 +83,11 @@ export const Pricing = () => {
                     <h1 className='text-[40px] font-bold mt-[36px] ml-[25px]'>Yearly</h1>
                     <p className='text-[#888] text-[16px] ml-[25px]'>For small artist team & creators</p>
                     <div className='text-center text-[56px] text-[#3D4449] mt-[48px]'>
-                        $67,2
+                        1,679<span className='text-[42px]'>,000₫</span>
                     </div>
                     <div className='flex justify-center'>
                         <button className='mt-[48px] '>
-                            <Link to={"/checkout?packageId=2&isYearly=true"} className='upgrade_btn py-[12px] px-[106px] text-[16px] text-[#3D4449] font-bold bg-[#FFD586] rounded-[12px] lg:hover:bg-[black] lg:hover:text-[#fefefe]'>Upgrade</Link>
+                            <Link to={"/checkout?packageId=2"} className='upgrade_btn py-[12px] px-[106px] text-[16px] text-[#3D4449] font-bold bg-[#FFD586] rounded-[12px] lg:hover:bg-[black] lg:hover:text-[#fefefe]'>Upgrade</Link>
                         </button>
                     </div>
                     {/* rights */}
