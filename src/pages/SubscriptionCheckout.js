@@ -4,8 +4,12 @@ import left_icon from '../image/Icon/left_icon.png';
 import logo from '../image/Logo/Asp_Logo.png';
 import card_icon from '../image/Icon/card_icon.png';
 import cvc_icon from '../image/Icon/cvc_icon.png';
+import { useSelector } from 'react-redux';
 
 export const SubscriptionCheckout = (props) => {
+  const currentUser = useSelector((state) => state.currentUser.user)
+  const email = currentUser['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress']
+
   return (
     <div className='checkout_container flex h-screen'>
       <div className='w-[50%] max-h-screen bg-[rgb(244,241,228)]'>
@@ -57,7 +61,7 @@ export const SubscriptionCheckout = (props) => {
       <div className='w-[50%] max-h-screen flex flex-col justify-center gap-[60px] items-center'>
         <div className='flex items-center gap-[93px] bg-[#E6E9EC] w-[420px] h-[43px] rounded-[5px] pl-[24px]'>
           <label className='text-[16px] font-bold' htmlFor="">Email</label>
-          <span className='text-[16px] font-light'>{props.email} viet12092003@gmail.com</span>
+          <span className='text-[16px] font-light'>{email}</span>
         </div>
         {/*  */}
         <form action="">
