@@ -15,6 +15,7 @@ import raiden from '../image/Raiden_Rising_Render.webp'
 import jwt_decode from "jwt-decode"
 import { setArtworkTypes } from '../store/artworkTypeActions';
 import { HeaderOutSide } from '../components/header/Header_outside';
+import money_icon from '../image/Icon/money_icon.png'
 
 function ManageArtwork() {
     const [artworkList, setArtworkList] = useState([])
@@ -91,7 +92,10 @@ function ManageArtwork() {
                             </span> {artwork.artworkStatus}
                         </div>
                     </div>
-                    <div className="flex"><div className="ms-4 w-full text-[#3D4449] text-[18px]">{formatedPrice}</div></div>
+                    <div className="flex ms-4 items-center gap-1">
+                        <img src={money_icon} alt="" />
+                        <div className=" w-full text-[#3D4449] text-[18px]">{formatedPrice}</div>
+                    </div>
                 </div>
                 <div className='flex justify-center'>
                     <hr className='w-[330px] border-[#9CA3A8] border-opacity-80 mb-[8px]' />
@@ -115,7 +119,7 @@ function ManageArtwork() {
             <HeaderOutSide></HeaderOutSide>
             <section className="bg-[#F4F1E4] p-3 sm:p-5 antialiased">
                 <div className="mx-auto max-w-screen-2xl px-4 lg:px-12">
-                    <h1 className='font-bold text-[23px] opacity-80'>Your Artworks</h1>
+                    <h1 className='font-bold text-[32px] opacity-80 text-[#A67E4E]'>Your Artworks</h1>
                     <div className=" relative  sm:rounded-lg overflow-hidden">
                         <div className="flex flex-col md:flex-row items-stretch md:items-center md:space-x-3 space-y-3 md:space-y-0 justify-between mx-4 py-4">
                             <div className="w-full md:w-1/2">
@@ -141,8 +145,8 @@ function ManageArtwork() {
                             </div>
                         </div>
                     </div>
-                    <div className="mt-3  pb-[80px] rounded-lg flex flex-col items-center bg-[#191A23] " style={{ minHeight: "100vh" }}>
-                        <h1 className='text-[#fff] text-center text-[32px] font-bold pt-[30px] uppercase'>Manage Artworks</h1>
+                    <div className="mt-3  pb-[80px] rounded-lg flex flex-col items-center bg-[#FFD586] bg-opacity-[47%] " style={{ minHeight: "100vh" }}>
+                        <h1 className='text-[#FF6C79] text-center text-[32px] font-bold pt-[30px] uppercase'>Manage Artworks</h1>
                         <div className='grid grid-cols-3 pt-[40px] gap-x-[30px] gap-y-[40px]'>
                             {currentArtworkList.length > 0 && renderListOfArtwork}
                         </div>
