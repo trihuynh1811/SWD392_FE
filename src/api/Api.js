@@ -112,3 +112,9 @@ export const ReservationApi = {
         })
     }
 }
+
+export const TagApi = {
+    GetAllTags: () => {
+        return api.get('Tag/get-all-tags')
+    }
+}
