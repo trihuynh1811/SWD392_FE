@@ -118,3 +118,15 @@ export const ReservationApi = {
         })
     }
 }
+
+export const TagApi = {
+    GetAllTags: () => {
+        return api.get('Tag/get-all-tags')
+    }
+}
+
+export const PackageApi = {
+    GetPackage: (id) => {
+        return api.get(`Package/get-package/${id}`)
+    }
+}

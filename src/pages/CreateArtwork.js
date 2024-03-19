@@ -110,10 +110,8 @@ function CreateArtwork() {
         console.log(formData);
         ArtworkApi.CreateArtwork(accessToken, formData).then(res => {
             if (res.status === 200) {
-                alert("new artwork created")
-                formik.values.Description = ""
-                formik.values.Name = ""
-                formik.values.ImageUploadRequest = ""
+                alert("new artwork created");
+                navigate('/manage-artwork');
             }
         }).catch(e => console.log(e))
     }
