@@ -7,7 +7,7 @@ import '../../css/Homepage.css'
 
 export const ArtworksView = () => {
   return (
-    <div className='artworkview_container mt-[117px]'>
+    <div className='artworkview_container mt-[117px] mb-[100px]'>
       <div className='flex justify-center'>
         <div className='w-[800px]'>
           <h1 className='text-center text-[32px] tracking-[-2%] font-bold'>With <span className='size_text'>many size</span>  we have in packages, you can enjoy all the artworks completely </h1>

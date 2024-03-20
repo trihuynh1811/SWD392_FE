@@ -28,9 +28,7 @@ function App() {
       <Discord></Discord>
       <ArtworksView></ArtworksView>
 
-      <div className="App" style={{ minHeight: "100vh" }}>
-        
-      </div>
+      
       
 
 
