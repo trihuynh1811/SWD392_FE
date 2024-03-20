@@ -80,3 +80,33 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
+.typehub_title{
+  font-family: 'Modern Antiqua';
+}
+
+.direction button {
+  transition: 0.5s;
+}
+.direction button:hover{
+  opacity: 0.8;
+  background:#FFD586;
+}
+
+.typehub-list{
+  width: 1350px;
+  max-width: 100% !important;
+  overflow: auto;
+  margin: 10px auto;
+  scroll-behavior: smooth;
+}
+.typehub-list::-webkit-scrollbar{
+  display: none !important;
+}
+.typehub-item{
+  transition: transform 0.3s;
+  z-index: 999;
+}
+.typehub-item:hover{
+  transform: scale(0.9);
+}
