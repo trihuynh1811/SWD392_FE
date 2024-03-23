@@ -152,7 +152,7 @@ function Gallery() {
 
                 </div>
                 {/* filter type */}
-                <div>
+                {/*<div>
                     <select className='h-[40px] bg-transparent' name="" id="">
                         {optionsTypeData.map((option) => (
                             <option key={option.value} value={option.value}>
@@ -160,7 +160,7 @@ function Gallery() {
                             </option>
                         ))}
                     </select>
-                </div>
+                </div>*/}
             </div>
             <h1 className='text-[48px] text-[#3D4449] font-bold text-center mt-[50px]'> <span className='gallery_title'>Artwork</span> Gallery🎨</h1>
             <div style={{ minHeight: '100vh' }}>
